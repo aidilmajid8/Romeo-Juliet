@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin - Generate Tamu Undangan</title>
+    <!-- Menggunakan Tailwind CSS untuk styling yang rapi dan cepat -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk ikon tombol -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      #kata-pengantar option:checked,
+      #kata-pengantar option:hover {
+        background-color: #f704e2 !important;
+        color: #ffffff !important;
+      }
+    </style>
+  </head>
+  <body class="bg-pink-200 min-h-screen py-8 px-4">
+    <div
+      class="max-w-2xl mx-auto bg-black rounded-2xl shadow-xl overflow-hidden p-6 md:p-8"
+    >
+      <!-- Header Info -->
+      <div class="text-center mb-6">
+        <h2 class="text-lg md:text-xl font-bold text-pink-300">
+          Buat undangan jadi lebih eksklusif dan personal di setiap undangan
+          yang akan dikirimkan.
+        </h2>
+        <p class="text-sm text-white mt-5">
+          Silahkan Generate Link nya di bawah ini:
+        </p>
+      </div>
+
+      <!-- Form Input -->
+      <div class="space-y-4 mb-6">
+        <div>
+          <label class="block text-sm font-semibold text-slate-200 mb-1"
+            >Nama Tamu Undangan:</label
+          >
+          <textarea
+            id="input-nama"
+            rows="4"
+            class="w-full p-2 border border-black rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none text-sm bg-[#ffc0fa] placeholder-slate-700 text-slate-900"
+            placeholder="Masukkan nama tamu (satu nama per baris)..."
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-200 mb-1"
+            >Pilih Kata Pengantar :</label
+          >
+          <select
+            id="kata-pengantar"
+            class="w-full p-3 border border-slate-500 rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none text-sm bg-[#ffc0fa]"
+          >
+            <option value="Wedding - Formal">Wedding - Formal</option>
+            <option value="Wedding - Casual">Wedding - Casual</option>
+          </select>
+        </div>
+
+        <button
+          onclick="generateTamu()"
+          class="w-full bg-[#f704e2] hover:bg-[#ffc0fa] text-white font-medium py-3 px-4 rounded-lg transition duration-200 shadow"
+        >
+          Generate Nama Tamu
+        </button>
+      </div>
+
+      <!-- Tabel Hasil -->
+      <div class="overflow-x-auto border border-slate-200 rounded-lg mb-6">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr
+              class="bg-slate-100 border-b border-slate-200 text-slate-700 text-sm"
+            >
+              <th class="p-3 text-center font-semibold w-1/2">Nama Tamu</th>
+              <th class="p-3 text-center font-semibold w-1/2">Options</th>
+            </tr>
+          </thead>
+          <tbody
+            id="tabel-tamu"
+            class="text-sm text-slate-100 divide-y divide-slate-200"
+          >
+            <!-- Data akan dimasukkan secara otomatis oleh JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 📖 PANDUAN PENGGUNAAN -->
+      <div
+        class="bg-zinc-900 border border-pink-500/40 rounded-xl p-4 mb-6 text-slate-200"
+      >
+        <h3
+          class="text-sm font-bold text-pink-400 mb-2 flex items-center gap-2"
+        >
+          <i class="fa-solid fa-circle-info"></i> Panduan Penggunaan Dashboard:
+        </h3>
+        <ul class="text-xs space-y-1.5 list-disc list-inside text-slate-300">
+          <li>
+            Masukkan satu atau beberapa nama tamu di kotak teks (1 nama per
+            baris dengan menekan Enter).
+          </li>
+          <li>
+            Pilih gaya kata pengantar yang diinginkan (Formal atau Casual).
+          </li>
+          <li>
+            Klik tombol <strong>"Generate Nama Tamu"</strong> untuk memunculkan
+            daftar tautan unik.
+          </li>
+          <li>
+            Gunakan tombol
+            <span class="text-emerald-400 font-semibold">Salin Link</span> untuk
+            menyalin tautan saja.
+          </li>
+          <li>
+            Gunakan tombol
+            <span class="text-emerald-400 font-semibold">WhatsApp</span> atau
+            <span class="text-pink-400 font-semibold">Instagram</span> untuk
+            mengirim pesan langsung kepada tamu.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Catatan Kaki -->
+      <div class="text-center">
+        <p class="text-xs text-red-500 font-semibold italic">
+          *Pastikan Setiap pembuatan nama tamu baru, halaman WEB Di refresh/Muat
+          Ulang
+        </p>
+      </div>
+    </div>
+
+    <!-- JavaScript Logika Dashboard -->
+    <script>
+      // Base URL undangan utama Anda (ganti dengan link website undangan Anda yang sudah di-hosting)
+      const baseUrl =
+        "file:///C:/Users/AMTRIMUDA/Desktop/Undangan%20Digital/index.html";
+
+      // Muat data tersimpan saat halaman dibuka
+      document.addEventListener("DOMContentLoaded", tampilkanData);
+
+      function generateTamu() {
+        const inputTxt = document.getElementById("input-nama").value.trim();
+        if (!inputTxt) {
+          alert("Silakan masukkan setidaknya satu nama tamu.");
+          return;
+        }
+
+        // Pisahkan nama berdasarkan baris (Enter)
+        const barisNama = inputTxt.split("\n");
+        let daftarTamu = JSON.parse(localStorage.getItem("data_tamu")) || [];
+
+        barisNama.forEach((nama) => {
+          const bersih = nama.trim();
+          if (bersih !== "") {
+            daftarTamu.push(bersih);
+          }
+        });
+
+        // Simpan kembali ke browser localStorage
+        localStorage.setItem("data_tamu", JSON.stringify(daftarTamu));
+
+        // Bersihkan textarea dan muat ulang tampilan tabel
+        document.getElementById("input-nama").value = "";
+        tampilkanData();
+      }
+
+      function tampilkanData() {
+        const tbody = document.getElementById("tabel-tamu");
+        tbody.innerHTML = "";
+
+        let daftarTamu = JSON.parse(localStorage.getItem("data_tamu")) || [];
+
+        if (daftarTamu.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="2" class="p-4 text-center text-slate-400">Belum ada tamu yang ditambahkan.</td></tr>`;
+          return;
+        }
+
+        daftarTamu.forEach((nama, index) => {
+          const linkUnik = `${baseUrl}?to=${encodeURIComponent(nama)}`;
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+                    <td class="p-3 text-center align-middle font-medium">${nama}</td>
+                    <td class="p-3 text-center align-middle">
+                        <div class="flex justify-center gap-1.5 flex-wrap">
+                            <button onclick="salinLink('${linkUnik}')" title="Salin Link" class="bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded transition"><i class="fa-solid fa-copy"></i></button>
+                            <button onclick="kirimWA('${nama}', '${linkUnik}')" title="Kirim WhatsApp" class="bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded transition"><i class="fa-brands fa-whatsapp"></i></button>
+                            <button onclick="kirimInstagram('${nama}', '${linkUnik}')" title="Kirim Instagram" class="bg-pink-600 hover:bg-pink-700 text-white p-2 rounded transition"><i class="fa-brands fa-instagram"></i></button>
+                            <button onclick="hapusTamu(${index})" title="Hapus" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded transition"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </td>
+                `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function salinLink(link) {
+        navigator.clipboard.writeText(link).then(() => {
+          alert("Link berhasil disalin: " + link);
+        });
+      }
+
+      function kirimWA(nama, link) {
+        const pesan = `Halo Yth. ${nama},\n\nTanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.\n\nBerikut link undangan online Anda:\n${link}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.\n\nTerima kasih.`;
+        const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(pesan)}`;
+        window.open(waUrl, "_blank");
+      }
+
+      function kirimInstagram(nama, link) {
+        const pesan = `Halo Yth. ${nama},\n\nTanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.\n\nBerikut link undangan online Anda:\n${link}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.\n\nTerima kasih.`;
+
+        navigator.clipboard
+          .writeText(pesan)
+          .then(() => {
+            alert(
+              `Pesan untuk ${nama} berhasil disalin!\n\nSilakan "Paste" (Tempel) teks tersebut ke kolom chat Instagram tujuan.`,
+            );
+            window.open("https://www.instagram.com/direct/inbox/", "_blank");
+          })
+          .catch(() => {
+            alert("Gagal menyalin otomatis, silakan salin manual.");
+          });
+      }
+
+      function hapusTamu(index) {
+        if (confirm("Apakah Anda yakin ingin menghapus tamu ini?")) {
+          let daftarTamu = JSON.parse(localStorage.getItem("data_tamu")) || [];
+          daftarTamu.splice(index, 1);
+          localStorage.setItem("data_tamu", JSON.stringify(daftarTamu));
+          tampilkanData();
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romeo & Juliet</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts untuk font tulisan yang elegan -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand+Pre:wght@400..700&family=Oswald:wght@200..700&family=Pacifico&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Edu+VIC+WA+NT+Hand+Pre:wght@400..700&family=Oswald:wght@200..700&family=Pacifico&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <!-- Hubungkan ke file CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Bagian 1: Home / Cover -->
+    <section class="home-cover" id="home">
+        <div class="cover-content">
+            <p class="invitation-text">Invitation</p>
+            <p class="greeting">Dengan hormat, kami mengundang Anda<br>untuk hadir dalam pernikahan kami</p>
+            <h1 class="couple-names">Romeo</h1>
+            <h1 class="simbol">&</h1>
+            <h1 class="couple-names1">Juliet</h1>
+            <h1 class="guest-name" id="nama-tamu">Nama Tamu</h1>
+            
+            <!-- Tombol untuk membuka undangan -->
+            <button class="btn-open" onclick="openInvitation()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                Open Invitation
+            </button>
+        </div>
+    </section>
+<script>
+  // Mengambil parameter 'to' dari URL (Contoh: ?to=Budi+Santoso)
+  const urlParams = new URLSearchParams(window.location.search);
+  const namaTamu = urlParams.get('to');
+
+  // Menangkap elemen berdasarkan ID 'nama-tamu'
+  const elemenTamu = document.getElementById('nama-tamu');
+
+  // Jika parameter 'to' tersedia di URL, ubah teksnya
+  if (namaTamu && elemenTamu) {
+    // decodeURIComponent berfungsi mengubah format seperti '+' atau '%20' menjadi spasi biasa
+    elemenTamu.innerText = decodeURIComponent(namaTamu);
+  } else if (elemenTamu) {
+    // Teks default jika link tidak ada parameter 'to'
+    elemenTamu.innerText = "Tamu Undangan";
+  }
+</script>
+    <!-- BAGIAN BARU: Layar Transisi Foto Mempelai -->
+    <div class="photo-transition-screen" id="loading-photo">
+        <div class="photo-wrapper">
+            <img src="images/foto1.jpg" alt="Foto Mempelai" class="mempelai-transition-img">
+        </div>
+    </div>
+
+    <!-- Bagian 2: Halaman Utama -->
+     <selection class="Foto-decor" id="decoration">
+        <div class="decor">
+            <div class="decor-top-container">
+                <img src="images/decor_kiriatas.png" alt="Dekorasi Atas" class="decor-top_left">
+                <img src="images/decor_kananatas.png" alt="Dekorasi Atas" class="decor-top_right">
+            </div>
+            <img src="images/decor-atas.png" alt="Dekorasi Atas" class="decor-top">
+            
+            <!-- 🛠️ UTAMA: Pastikan tgl-overlay-box MASUK ke dalam wadah foto ini -->
+            <div class="flower-decor-container">
+                <img src="images/foto1.jpg" alt="Foto" class="flower-decor">
+                
+                <!-- ➕ Pindahkan kotak angka 31 ke dalam sini -->
+                <div class="tgl-overlay-box">
+                    <img src="images/Font-tgl.png" alt="Dekorasi Tanggal" class="Font-tgl">
+                </div>
+            </div> <!-- Batas akhir wadah foto -->
+            
+            <!-- (⚠️ Tag tgl-overlay-box yang di luar sini sebelumnya silakan dihapus) -->
+
+            <img src="images/decor-bawah.png" alt="Dekorasi Bawah" class="decor-bottom">
+            <div class="teks1">
+                <p class="opening-quote1">"Dan di antara tanda-tanda kekuasaan-Nya</p>
+                <p class="opening-quote2">ialah Dia menciptakan untukmu pasangan</p>
+                <p class="opening-quote3">hidup dari jenismu sendiri, supaya kamu</p>
+                <p class="opening-quote4">merasa tenteram."</p>
+                <p class="opening-quote5">QS. Ar-Rum: 21</p>
+            </div>
+        </div>
+        <audio id="background-music" loop>
+    <source src="music/musik-pernikahan.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar audio.
+</audio>
+</selection>
+
+    <section class="main-wedding-page" id="main-page">
+        <div class="main-container">
+            <!-- 🛠️ PERBAIKAN: Mengubah <head> menjadi <div> agar kode valid dan tidak merusak layout -->
+                <div class="pembatas">
+                    <img src="images/Batas-decor.png" als="Dekorasi Love" class="batas-center-decor">
+                </div>
+            <div class="opening-quote" id="opening-quote">
+                <p class="quote1">Dengan memohon rahmat dan ridho Allah</p>
+                <p class="quote2">SWT, kami bermaksud menyelenggarakan</p>
+                <p class="quote3">pernikahan:</p>
+            </div>
+            
+            <!-- Tempat Profil Pengantin (Langkah Selanjutnya) -->
+            <div class="mempelai-box">
+                <img src="images/Decor-Love.png" alt="Dekorasi Love" class="love-center-decor">
+                
+    
+    <!-- 🤵 KARTU PROFIL MEMPELAI PRIA -->
+    <div class="mempelai-card">
+        <img src="images/Laki-Laki.jpg" alt="Foto Pengantin 1" class="mempelai-img">
+        <div class="mempelai-info">
+            <h3 class="mempelai-nama">Romeo</h3>
+            <p class="mempelai-ayah">Putra dari Bapak Monty &amp; Ibu Rina</p>
+        </div>
+    </div>
+
+    <!-- 👰 KARTU PROFIL MEMPELAI WANITA -->
+    <div class="mempelai-card">
+        <img src="images/wanita.jpg" alt="Foto Pengantin 2" class="mempelai1-img"> <!-- Ganti foto wanita jika ada -->
+        <div class="mempelai-info">
+            <h3 class="mempelai-nama">Juliet</h3>
+            <p class="mempelai-ayah">Putri dari Bapak Ahmad &amp; Ibu Siti</p>
+        </div>
+    </div>
+</div>
+<div class="decoration">
+            <img src="images/Batas-decor1.png" alt="Dekorasi Love" class="batasan">
+        </div>
+        <div class="text0">
+            <p class="text1">MENUJU HARI BAHAGIA</p>
+            <p class="text2">Hitung Mundur</p>
+            <div class="countdown-container">
+    <div class="countdown-card">
+        <span id="days">00</span>
+        <p>Hari</p>
+    </div>
+    <div class="countdown-card">
+        <span id="hours">00</span>
+        <p>Jam</p>
+    </div>
+    <div class="countdown-card">
+        <span id="minutes">00</span>
+        <p>Menit</p>
+    </div>
+    <div class="countdown-card">
+        <span id="seconds">00</span>
+        <p>Detik</p>
+    </div>
+</div>
+        </div>
+        </div>
+    </section>
+
+    <section class="weddings" id="program">
+        <div>
+            <img src="images/Batas-decor2.png" alt="Dekorasi Love" class="batasan">
+        </div>
+        <div class="Judul">
+                <p class="text3">Waktu & Tempat</p>
+                <h1 class="text4">Rangkaian Acara</h1>
+            </div>
+        <div class="decorationn">
+            <div class="Program-item">
+                <h1 class="icon">💍</h1>
+                <h1 class="text-judul">Akad Nikah</h1>
+                <p class="time">08:00 WIB</p>
+                <p class="hari">Sabtu, 31 Oktober 2026</p>
+            </div>
+            <div class="Program-item">
+                <h1 class="icon">💐</h1>
+                <h1 class="text-judul">Resepsi</h1>
+                <p class="time">11:00 WIB_selesai</p>
+                <p class="hari">Sabtu, 31 Oktober 2026</p>
+            </div>
+            <div class="Program-item">
+                <h1 class="icon">🧭</h1>
+                <h1 class="text-judul">Lokasi</h1>
+                <p class="time">JL. URIPSUMOHARJO</p>
+                <p class="hari">Makassar</p>
+                <button class="program-location" id="location-toggle" onclick="bukaPeta()">
+                    ⚲ Buka Googgle Maps
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="story" id="story1">
+    <div class="foto-item">
+        <img src="images/Batas-decor2.png" alt="Dekorasi Love" class="batasan">
+    </div>
+    <div class="Judul">
+        <p class="text5">PERJALANAN KAMI</p>
+        <h1 class="text6">Love Story</h1>
+    </div>
+    <div>
+        <img src="images/foto2.jpg" alt="foto-story" class="story-foto">
+    </div>
+    
+    <!-- 🛠️ AREA UTAMA: Kotak pembungkus cerita -->
+        <!-- 🛠️ AREA UTAMA: Kotak kisah pembungkus seluruh komponen -->
+    <div class="kisah">
+        
+        <!-- Elemen Kiri: Gambar Angka Tahun -->
+        <img src="images/Tahun1.png" alt="text-tahun" class="image-text">
+        
+        <!-- Elemen Kanan: Konten Teks Cerita -->
+        <div class="text-kisah">
+            <p>Berkenalan saat ditaman nasional.</p>
+        </div>
+
+        <!-- 🛠️ UTAMA: Garis pembatas ditaruh di sini agar berada di bawah Tahun & Teks -->
+        <img src="images/Garis.jpg" alt="garis-pembatas" class="garisan">
+
+    </div> <!-- Batas akhir kotak kisah -->
+    <div class="kisah">
+        
+        <!-- Elemen Kiri: Gambar Angka Tahun -->
+        <img src="images/Tahun2.png" alt="text-tahun" class="image-text1">
+        
+        <!-- Elemen Kanan: Konten Teks Cerita -->
+        <div class="text-kisah1">
+            <p>Kami mengikat niat bersama kedua keluarga</p>
+        </div>
+
+        <!-- 🛠️ UTAMA: Garis pembatas ditaruh di sini agar berada di bawah Tahun & Teks -->
+        <img src="images/Garis.jpg" alt="garis-pembatas" class="garisan">
+
+    </div> <!-- Batas akhir kotak kisah -->
+    <div class="kisah">
+        
+        <!-- Elemen Kiri: Gambar Angka Tahun -->
+        <img src="images/Tahun3.png" alt="text-tahun" class="image-text2">
+        
+        <!-- Elemen Kanan: Konten Teks Cerita -->
+        <div class="text-kisah2">
+            <p>Menuju hari bahagia kami.</p>
+        </div>
+
+        <!-- 🛠️ UTAMA: Garis pembatas ditaruh di sini agar berada di bawah Tahun & Teks -->
+        <img src="images/Garis.jpg" alt="garis-pembatas" class="garisan">
+
+    </div> <!-- Batas akhir kotak kisah -->
+</section>
+
+<section class="moment" id="our-moment">
+    <div>
+        <img src="images/Batas-decor2.png" alt="Dekorasi Love" class="batasann">
+    </div>
+    <div class="Judul">
+        <p class="text5">GALERI</p>
+        <h1 class="text6">Our Moment</h1>
+    </div>
+    <div class="gallery-carousel-container"></div>
+        <!-- Jendela Intip Foto -->
+        <div class="gallery-viewport">
+            <div class="gallery-slider">
+                <!-- Pastikan semua foto Anda didaftarkan berbaris di sini -->
+                <div class="slide-item active"><img src="images/foto-pose1.jpg" alt="Foto 1"></div>
+                <div class="slide-item "><img src="images/foto-pose2.jpg" alt="Foto 2"></div>
+                <div class="slide-item "><img src="images/foto-pose3.jpg" alt="Foto 3"></div>
+                <div class="slide-item "><img src="images/foto-pose4.jpg" alt="Foto 4"></div>
+                <div class="slide-item "><img src="images/foto-pose5.jpg" alt="Foto 5"></div>
+            </div>
+                <div class="gallery-controls-bottom">
+                    <!-- Tombol Back (Mundur) -->
+                    <button class="carousel-btn back-btn" onclick="geserFoto(-1)">↩</button>
+                    <!-- Tombol Next (Maju) -->
+                    <button class="carousel-btn next-btn" onclick="geserFoto(1)">↪</button>
+                </div>
+        </div>
+        <div class="Judul">
+    <p class="text7">MOMEN BAHAGIA</p>
+    <!-- Ganti teks h1 di bawah ini dengan slogan pilihan Anda -->
+    <h1 class="text8">Menangkap Detik, Mengabadikan Kita.</h1>
+</div>
+    </div>
+</section>
+
+<section class="ucapandoa" id="rsvp">
+    <div>
+        <img src="images/Batas-decor2.png" alt="Dekorasi Love" class="batasann">
+    </div>
+        <div class="Judul">
+            <p class="text5">RSVP</p>
+            <h1 class="text6">Ucapan & Doa</h1>
+        </div>
+    <div class="rsvp-bg-box">
+        <div class="guestbook-container">
+            <form id="guestbook-form" onsubmit="kirimUcapan(event)">
+                <div class="input-group">
+        <select id="guest-status-input" required>
+            <option value="" disabled selected>Konfirmasi Kehadiran</option>
+            <option value="Hadir">Saya akan datang (Hadir)</option>
+            <option value="Tidak Hadir">Maaf, Tidak dapat hadir</option>
+        </select>
+    </div>
+                <!-- Kolom Input Nama -->
+                <div class="input-group">
+                    <input type="text" id="guest-name-input" placeholder="Nama Anda" required>
+                </div>
+                
+                <!-- Kolom Input Teks Ucapan/Doa -->
+                <div class="input-group">
+                    <textarea id="guest-message-input" rows="4" placeholder="Tulis ucapan &amp; doa restu Anda di sini..." required></textarea>
+                </div>
+                
+                <!-- Tombol Kirim -->
+               <div class="input-group">
+                    <button type="submit" class="btn-send-wish">Kirim Ucapan</button>
+                </div>
+            </form>
+
+            <!-- Wadah Tempat Munculnya Daftar Ucapan Tamu (Nanti diisi lewat JS) -->
+            <div class="wishes-display-box" id="wishes-box">
+                <!-- Ucapan tamu yang sudah dikirim akan otomatis menumpuk di sini -->
+            </div>
+        </div>
+         <div class="wishes-display-container" id="wishes-display-container"></div>
+    </div>
+</section>
+<section class="giftpage" id="gift">
+    <div>
+        <img src="images/Batas-decor2.png" alt="Dekorasi Love" class="batasann">
+    </div>
+        <div class="Judul">
+            <p class="text5">TANPA MENGURANGI RASA HORMAT</p>
+            <h1 class="text6">Amplop Digital</h1>
+            <p class="text9">Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan<br>tanda kasih kepada kami, dapat melalui:</p>
+        </div>
+         <div class="gift-container">
+            
+            <!-- Kartu 1: Rekening Bank (Misal Bank BCA) -->
+            <div class="gift-single-box">
+            
+            <!-- Baris 1: BANK BCA -->
+            <div class="gift-row-item">
+                <div class="gift-text-side">
+                    <h3 class="bank-title">BANK BCA</h3>
+                    <p class="account-num" id="rek-bca">1234567890</p>
+                    <p class="account-owner">a.n. Romeo / Juliet</p>
+                </div>
+                <button class="btn-copy-inline" onclick="salinNomor('rek-bca', this)">
+                    📋 Salin
+                </button>
+            </div>
+
+            <!-- Baris 2: BANK BRI -->
+            <div class="gift-row-item">
+                <div class="gift-text-side">
+                    <h3 class="bank-title">BANK BRI</h3>
+                    <p class="account-num" id="rek-bri">9876543210123</p>
+                    <p class="account-owner">a.n. Romeo / Juliet</p>
+                </div>
+                <button class="btn-copy-inline" onclick="salinNomor('rek-bri', this)">
+                    📋 Salin
+                </button>
+            </div>
+
+            <!-- Baris 3: GOPAY -->
+            <div class="gift-row-item">
+                <div class="gift-text-side">
+                    <h3 class="bank-title">GOPAY</h3>
+                    <p class="account-num" id="E-gopay">081234567890</p>
+                    <p class="account-owner">a.n. Romeo / Juliet</p>
+                </div>
+                <button class="btn-copy-inline" onclick="salinNomor('E-gopay', this)">
+                    📋 Salin
+                </button>
+            </div>
+
+            <!-- Baris 4: DANA -->
+            <div class="gift-row-item">
+                <div class="gift-text-side">
+                    <h3 class="bank-title">DANA</h3>
+                    <p class="account-num" id="E-dana">081234567890</p>
+                    <p class="account-owner">a.n. Romeo / Juliet</p>
+                </div>
+                <button class="btn-copy-inline" onclick="salinNomor('E-dana', this)">
+                    📋 Salin
+                </button>
+            </div>
+
+        </div> <!-- Batas akhir satu kotak box -->
+
+            <!-- Kartu 2: Pengiriman Kado Fisik / Alamat Rumah -->
+            <div class="gift-address-card">
+                <div class="gift-bank-info">
+                    <h3 class="bank-name">KIRIM KADO (ALAMAT)</h3>
+                    <p class="account-number" id="alamat-kado">JL. URIP SUMOHARJO NO. 12, MAKASSAR</p>
+                    <p class="account-name">Penerima: Romeo (08123456789)</p>
+                </div>
+                <!-- Tombol Salin Alamat -->
+                <button class="btn-copy-gift" onclick="salinNomor('alamat-kado', this)">
+                    📍 Salin Alamat
+                </button>
+            </div>
+            <div class="decor-bottom-container">
+                <img src="images/decor_kiriatas.png" alt="Dekorasi Bawah" class="decor-top_bottom1">
+                <img src="images/decor_kananatas.png" alt="Dekorasi Bawah" class="decor-top_bottom">
+            </div>
+        </div>
+        <!-- Tombol Play/Pause Melayang -->
+<button id="music-control" onclick="toggleMusic()">🎵</button>
+
+<script>
+    let isPlaying = false;
+    const backgroundMusic = document.getElementById('background-music');
+    const musicBtn = document.getElementById('music-control');
+
+    // Jika tombol buka undangan diklik, set status musik jadi playing
+    document.getElementById('open-invitation').addEventListener('click', function() {
+        backgroundMusic.play();
+        isPlaying = true;
+        musicBtn.innerHTML = "⏸";
+    });
+
+    function toggleMusic() {
+        if (isPlaying) {
+            backgroundMusic.pause();
+            musicBtn.innerHTML = "▶";
+            isPlaying = false;
+        } else {
+            backgroundMusic.play();
+            musicBtn.innerHTML = "⏸";
+            isPlaying = true;
+        }
+    }
+</script>
+</section>
+
+<section class="penutup" id="tutup-page">
+    <div class="closing-photo-container">
+     <img src="images/foto-pose6.jpg" alt="Foto Penutup" class="closing-img">
+        <div class="text10">
+            <p class="text0">SAMAPI JUMPA DI HARI BAHAGIA KAMI<br>TERIMA KASIH</p>
+            <H1 class="mempelaii">Romeo & Juliet</H1>
+        </div>
+                <!-- Kaki Halaman Paling Bawah Anda -->
+        <footer class="footer-copyright">
+            
+            <!-- Wadah Kredit Pembuat & Tombol Sosial Media Anda -->
+            <div class="creator-credits">
+                <span class="creator-text">Created by Alunbowed</span> <!-- 🛠️ Ganti 'YourName' dengan nama Anda -->
+                
+                <div class="social-icons-group">
+                    <!-- 1. Nomor HP / WhatsApp (Klik langsung Salin Nomor) -->
+                    <button class="social-btn-item" onclick="salinNomorHp('082191532695', this)" title="Salin Nomor HP">
+                        <img src="images/icon-wa.png" alt="WhatsApp">
+                    </button>
+                    
+                    <!-- 2. Instagram (Buka Link Profil) -->
+                    <a href="https://www.instagram.com/aidil_majid_hamid/" target="_blank" class="social-btn-item" title="Instagram">
+                        <img src="images/icon-instagram.png" alt="Instagram">
+                    </a>
+                    
+                    <!-- 3. Telegram (Buka Link Profil) -->
+                    <a href="https://t.me/AidilMJ" target="_blank" class="social-btn-item" title="Telegram">
+                        <img src="images/icon-telegram.png" alt="Telegram">
+                    </a>
+                    
+                    <!-- 4. TikTok (Buka Link Profil) -->
+                    <a href="https://www.tiktok.com/@aidilfitrimajid?is" target="_blank" class="social-btn-item" title="TikTok">
+                        <img src="images/icon-tiktok.png" alt="TikTok">
+                    </a>
+                </div>
+            </div>
+            <p>&copy; 2026 Melomaniac. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+</section>
+
+    <nav class= "floating-navbar" id="main-navbar">
+        <button class="nav-toggle-btn" id="navbar-toggle" onclick="toggleNavbarView()">
+            <span>⟩</span>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('home')">
+            <span>🏠︎</span>
+            <p>Home</p>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('main-page')">
+            <span></span>
+            <p>MEMPELAI</p>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('program')">
+            <span></span>
+            <p>ACARA</p>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('story1')">
+            <span></span>
+            <p>KISAH</p>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('our-moment')">
+            <span></span>
+            <p>GALERI</p>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('rsvp')">
+            <span></span>
+            <p>UCAPAN</p>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('gift')">
+            <span></span>
+            <p>HADIA</p>
+        </button>
+        <button class="nav-item" id="btn-scroll-toggle" onclick="toggleAutoScroll()">
+            <span id="scroll-icon">⏸</span>
+            <p id="scroll-text">STOP</p>
+        </button>
+    </nav>
+
+    <!-- Tempat file JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
