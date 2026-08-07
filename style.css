@@ -58,8 +58,8 @@ body {
 
 /* 1. Ubah ukuran font di bagian Konten Cover */
 .greeting {
-  font-size: 1.1rem; /* Sebelumnya 0.8rem (Dibuat lebih terbaca) */
-  letter-spacing: 4px;
+  font-size: 0.5rem; /* Sebelumnya 0.8rem (Dibuat lebih terbaca) */
+  letter-spacing: 2px;
   position: relative;
   font-weight: 500;
   margin-bottom: 0px;
@@ -234,10 +234,11 @@ body {
 
 /* 3. Mengatur ukuran gambar tulisan tanggal */
 .Font-tgl {
-  width: 150px; /* Atur ukuran lebar gambar tulisan tanggal Anda agar pas dan estetik */
+  width: 100%;
+  max-width: 600px; /* Membatasi ukuran maksimal dekorasi atas agar estetik */
   height: auto;
-  display: block;
-  pointer-events: none; /* Agar tidak mengganggu jika layar disentuh */
+  margin-bottom: center;
+  margin-top: 20px;
 }
 
 .decor-top {
@@ -270,33 +271,38 @@ body {
 }
 
 .opening-quote {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
 }
 
 .opening-quote1 {
   color: #4a4a4a;
   font-weight: 455;
+  font-size: 0.8rem;
 }
 
 .opening-quote2 {
   color: #4a4a4a;
   font-weight: 455;
+  font-size: 0.8rem;
 }
 
 .opening-quote3 {
   color: #4a4a4a;
   font-weight: 455;
+  font-size: 0.8rem;
 }
 
 .opening-quote4 {
   color: #4a4a4a;
   font-weight: 455;
+  font-size: 0.8rem;
 }
 
 .opening-quote5 {
   color: #4a4a4a;
   font-weight: 600;
   margin-bottom: 100px;
+  font-size: 0.8rem;
 }
 
 .batas-center-decor {
@@ -435,8 +441,10 @@ body {
 
 /* 🛠️ SESUAIKAN KODE FOTO ANDA (Hapus display:block, margin-left/right lama agar tidak merusak posisi kartu) */
 .mempelai-img {
-  width: 100%; /* Mengikuti lebar wadah kartu (100% dari card) */
-  max-height: 250%;
+ width: 140px !important; /* Mengunci lebar horizontal foto pria */
+  height: 175px !important; /* Mengunci tinggi vertikal foto pria */
+  object-fit: cover;
+  object-position: center top;
   border-radius: 10px;
   box-shadow: 0px 5px 30px rgba(255, 3, 171, 0.5);
   outline: 3px solid #f704e2;
@@ -449,12 +457,13 @@ body {
 }
 
 .mempelai1-img {
-  width: 100%; /* Mengikuti lebar wadah kartu (100% dari card) */
-  max-height: 250%;
+ width: 140px !important; /* Mengunci lebar horizontal foto pria */
+  height: 175px !important; /* Mengunci tinggi vertikal foto pria */
+  object-fit: cover;
+  object-position: center top;
   border-radius: 10px;
   box-shadow: 0px 5px 30px rgba(255, 3, 171, 0.5);
   outline: 3px solid #f704e2;
-  height: auto;
   /* margin-top atau margin-bottom silakan disesuaikan jika butuh jarak atas luar */
   opacity: 0;
   transform: translateX(100px);
