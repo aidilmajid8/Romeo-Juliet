@@ -1,4 +1,6 @@
-/* Reset dasar */
+/* ==========================================
+   1. RESET & BASE CSS
+   ========================================== */
 * {
   margin: 0;
   padding: 0;
@@ -7,1811 +9,1128 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: #fcf8f2;
-  color: #4a4a4a;
+  color: #333333;
+  /* Warna latar belakang luar (ruang kosong di pinggir) */
+  background-color: #f8f6f0;
   overflow-x: hidden;
 }
 
-/* Pengaturan Bagian Cover Home */
-.home-cover {
+/* ==========================================
+   2. COVER / HERO SECTION (HALAMAN UTAMA BUKA)
+   ========================================== */
+.cover-container {
   position: relative;
   width: 100%;
-  height: 100vh; /* Tinggi penuh satu layar ponsel/laptop */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  /* Ganti gambar di bawah dengan foto background Anda sendiri nanti jika ada */
+  max-width: 500px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  /* Gunakan cover agar latar penuh tanpa celah atas/bawah */
   background:
-    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("images/Background.jpg") no-repeat center center;
-  background-size: cover;
-  padding: 20px;
-  border: 10px solid #f704e2; /* Membuat bingkai emas mengelilingi 4 sisi layar */
-  box-sizing: border-box;
-}
-
-/* Konten di dalam Cover */
-.cover-content {
+    linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),
+    url("images/background1.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   color: #ffffff;
-  animation: fadeInUp 1.5s ease-out;
-}
-
-.invitation-text {
-  font-family: "Oswald", sans-serif;
-  font-size: 2.5rem; /* Ukuran font untuk teks "Invitation" */
-  letter-spacing: 2px;
-  position: relative;
-  font-weight: 900;
-  margin-top: -50px;
-  text-transform: uppercase;
-}
-
-.greeting1 {
-  font-size: 1.1rem; /* Sebelumnya 0.8rem (Dibuat lebih terbaca) */
-  letter-spacing: 4px;
-  position: relative;
-  font-weight: 500;
-  margin-bottom: 1px;
-  text-transform: uppercase;
-}
-
-/* 1. Ubah ukuran font di bagian Konten Cover */
-.greeting {
-  font-size: 0.5rem; /* Sebelumnya 0.8rem (Dibuat lebih terbaca) */
-  letter-spacing: 2px;
-  position: relative;
-  font-weight: 500;
-  margin-bottom: 0px;
-  text-transform: uppercase;
-}
-
-.couple-names {
-  font-family: "Great Vibes", cursive;
-  font-size: 3.5rem; /* Sebelumnya 4rem (Dibuat jauh lebih besar dan menonjol) */
-  font-weight: normal;
-  margin-bottom: -30px;
-  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
-}
-
-.simbol {
-  font-family: "Great Vibes", cursive;
-  font-size: 3.5rem;
-  font-weight: normal;
-  margin-bottom: -20px;
-  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
-}
-
-.couple-names1 {
-  font-family: "Great Vibes", cursive;
-  font-size: 3.5rem; /* Sebelumnya 4rem (Dibuat jauh lebih besar dan menonjol) */
-  font-weight: normal;
-  margin-bottom: 25px;
-  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
-}
-
-.cover-content {
-  display: flex;
-
-  /* 🛠️ PERBAIKAN UTAMA 1: Memaksa konten berbaris ke bawah (Vertikal) */
-  flex-direction: column;
-
-  /* Memastikan semua elemen (Nama Tamu & Tombol) mengunci tepat di as tengah halaman */
-  align-items: center;
-  justify-content: center;
-
-  /* Jarak renggang antar komponen di dalam cover */
-  gap: 25px;
-}
-
-.guest-name {
-  display: inline-block;
-  margin: 20px auto;
-  padding: 0px 10px;
-  font-family: "Oswald", sans-serif;
-  outline: 2px solid #ffffff;
-  text-align: center;
-  box-sizing: border-box;
-  margin-top: -5px;
-  font-size: 1.55rem;
-}
-
-/* 2. Ubah ukuran Tombol agar lebih pas dengan teks di atasnya */
-.btn-open {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px; /* Dipertebal dari sebelumnya 12px 28px */
-  background-color: #c237d4;
-  color: #ffffff;
-  border: none;
-  border-radius: 30px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.1rem; /* Sebelumnya 0.9rem */
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  margin: 0 auto;
-  justify-content: center;
-}
-
-.btn-open:hover {
-  background-color: #ffff;
-  transform: translateY(-2px);
-  color: #c237d4;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Animasi Muncul Lembut */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Pengaturan Halaman Utama */
-
-/* Pengaturan Layar Transisi Foto */
-.photo-transition-screen {
-  display: none; /* Sembunyikan di awal */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(247, 4, 226, 0.5);
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.photo-wrapper {
-  text-align: center;
-  max-width: 90%; /* 🛠️ Diperbaiki dari 500% menjadi 90% agar pas di HP */
-}
-
-.decor-top-container {
-  display: flex;
-  justify-content: space-between; /* Membuat dekorasi atas kiri dan kanan berada di ujung */
-  width: 100%;
-  max-width: 500px; /* Membatasi ukuran maksimal dekorasi atas agar estetik */
-  margin-bottom: center;
-  margin-top: 30px;
-}
-
-/* 🛠️ Pengaturan Dekorasi Kiri Atas */
-.decor-top_left {
-  position: absolute; /* 🔒 Mengunci posisi secara bebas di dalam halaman */
-  top: 20px; /* Jarak aman 20px dari tepi atas bingkai */
-  left: 20px; /* Jarak aman 20px dari tepi kiri bingkai */
-  width: 30%; /* Diperkecil sedikit menjadi 30% agar tidak menabrak teks */
-  max-width: 200px;
-  height: auto;
-  z-index: 5; /* Memastikan berada di atas background */
-}
-
-/* 🛠️ Pengaturan Dekorasi Kanan Atas */
-.decor-top_right {
-  position: absolute; /* 🔒 Mengunci posisi secara bebas di dalam halaman */
-  top: 20px; /* Jarak aman 20px dari tepi atas bingkai */
-  right: 20px; /* Jarak aman 20px dari tepi kanan bingkai (Menempel Kanan) */
-  width: 30%;
-  max-width: 200px;
-  height: auto;
-  z-index: 5;
-}
-
-/* ⚠️ WAJIB PERIKSA PEMBUNGKUSNYA: Pastikan halaman utama Anda memiliki posisi relative agar kembang tidak melesat keluar halaman */
-.opening-section-page,
-.Foto-decor,
-.weddings {
-  position: relative; /* Pastikan baris ini sudah terketik di css halaman Anda */
-}
-
-/* 1. Menjadikan wadah foto sebagai jangkar koordinat */
-.flower-decor-container {
-  position: relative; /* 🔒 Wajib dikunci relative agar gambar tanggal tidak melesat keluar foto */
-  display: block; /* Membuat ukuran wadah pas mengikuti lebar foto */
-  max-width: 550px; /* Samakan dengan max-width dari .flower-decor Anda */
-  margin: 0 auto;
-}
-
-/* 2. 🛠️ UTAMA: Mengunci posisi gambar tanggal di pojok kanan atas foto (Lingkaran Merah) */
-.tgl-overlay-box {
-  position: absolute; /* 🔒 Mengunci posisi secara bebas di atas foto */
-  top: 15px; /* Jarak dari tepi atas foto (Silakan ubah angka ini untuk naik/turun) */
-  right: 35px; /* Jarak dari tepi kanan foto (Silakan ubah angka ini untuk geser kiri/kanan) */
-  z-index: 10; /* Memastikan berada di lapisan paling depan di atas foto */
-}
-
-/* 3. Mengatur ukuran gambar tulisan tanggal */
-.Font-tgl {
-  width: 100%;
-  max-width: 600px; /* Membatasi ukuran maksimal dekorasi atas agar estetik */
-  height: auto;
-  margin-bottom: center;
-  margin-top: 20px;
-}
-
-.decor-top {
-  width: 100%;
-  max-width: 600px; /* Membatasi ukuran maksimal dekorasi atas agar estetik */
-  height: auto;
-  margin-bottom: center;
-  margin-top: 20px;
-}
-
-.flower-decor {
-  width: 100%; /* 🛠️ Diperbaiki dari 500% menjadi 100% agar mengikuti wadah */
-  max-width: 600px; /* Membatasi ukuran maksimal foto agar estetik */
-  height: auto;
-  border-radius: 15px;
-  margin-bottom: center;
-  margin-top: center;
-}
-
-.decor-bottom {
-  width: 100%;
-  max-width: 600px; /* Membatasi ukuran maksimal dekorasi atas agar estetik */
-  height: auto;
-  margin-bottom: center;
-  border-radius: 15px;
-}
-
-.teks1 {
-  font-size: 1.2rem;
-}
-
-.opening-quote {
-  font-size: 0.8rem;
-}
-
-.opening-quote1 {
-  color: #4a4a4a;
-  font-weight: 455;
-  font-size: 0.8rem;
-}
-
-.opening-quote2 {
-  color: #4a4a4a;
-  font-weight: 455;
-  font-size: 0.8rem;
-}
-
-.opening-quote3 {
-  color: #4a4a4a;
-  font-weight: 455;
-  font-size: 0.8rem;
-}
-
-.opening-quote4 {
-  color: #4a4a4a;
-  font-weight: 455;
-  font-size: 0.8rem;
-}
-
-.opening-quote5 {
-  color: #4a4a4a;
-  font-weight: 600;
-  margin-bottom: 100px;
-  font-size: 0.8rem;
-}
-
-.batas-center-decor {
-  width: 50%;
-  max-width: 350px;
-  margin-top: -5px;
-}
-
-.quote1 {
-  color: #4a4a4a;
-  font-weight: 455;
-}
-
-.quote2 {
-  color: #4a4a4a;
-  font-weight: 455;
-}
-
-.quote3 {
-  color: #4a4a4a;
-  font-weight: 455;
-  margin-bottom: 50px;
-}
-
-/* Kotak Utama pembungkus kedua pengantin */
-.mempelai-box {
-  display: flex;
-  justify-content: center; /* Membuat kedua kartu berada pas di tengah halaman */
-  align-items: flex-start;
-  gap: 40px; /* Jarak celah di antara kartu pria dan kartu wanita */
-  max-width: 1000px; /* Diperlebar agar muat dua foto berdampingan */
-  margin: 40px auto;
-  padding: 0 20px;
-  position: relative; /* 🔒 Mengunci posisi agar dekorasi love bisa melayang bebas */
-}
-
-/* ➕ UTAMA: Kotak khusus per individu agar teks otomatis turun ke bawah foto */
-.mempelai-card {
-  display: flex;
-  flex-direction: column; /* 🔄 Mengubah arah barisan ke bawah (Foto atas, teks bawah) */
-  align-items: center; /* Membuat teks nama otomatis rata tengah di bawah foto */
-  text-align: center; /* Memastikan teks tertulis rata tengah */
-  width: 45%; /* Membagi area layar seimbang kiri dan kanan */
-  max-width: 350px;
-}
-
-/* Mengatur wadah teks di bawah foto */
-.mempelai-info {
-  margin-top: 25px; /* Memberikan celah jarak antara dasar foto dengan teks nama */
-  padding: 0 20px;
-  text-align: center; /* Memastikan teks tertulis rata tengah */
-}
-
-.mempelai-nama {
-  font-size: 2.5rem; /* Disesuaikan ukurannya agar pas di bawah foto */
-  font-weight: bold;
-  color: #000000;
-  margin-bottom: 10px;
-}
-
-.mempelai-ayah {
-  font-size: 1.2rem;
-  color: #000000;
-}
-
-.batasan {
-  width: 100%;
-  max-width: 500px;
-  margin-top: -5px;
-}
-
-.text1 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #ff16ff;
-  margin-top: 0%;
-}
-
-.text2 {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #ff16ff;
-}
-
-/* Wadah Utama Countdown agar Berjejer ke Samping */
-.countdown-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px; /* Jarak celah antar kotak angka */
-  margin: 30px auto; /* Jarak kosong atas dan bawah */
-  max-width: 500px;
-  padding: 0 10px;
-}
-
-/* Desain Kotak Setiap Angka */
-.countdown-card {
-  background-color: #ffffff; /* Latar belakang putih bersih */
-  border: 2px solid #ff00ea; /* Garis tepi pink cerah sesuai tema Anda */
-  padding: 12px 10px;
-  border-radius: 12px; /* Membuat sudut kotak melengkung manis */
-  width: 75px; /* Lebar kotak yang pas untuk layar ponsel */
-  text-align: center;
-  box-shadow: 0px 4px 15px rgba(247, 4, 227, 0.219); /* Efek bayangan pink tipis */
-}
-
-.Program-item:last-child {
-  margin-bottom: 0;
-}
-
-.Program-item.muncul-up {
-  opacity: 1 !important;
-  transform: translateY(0) !important; /* Kembali ke posisi asli */
-}
-
-/* Desain Angka Besar yang Berdetak */
-.countdown-card span {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700; /* Dibuat tebal (bold) */
-  color: #000000;
-  display: block;
-  margin-bottom: 2px;
-}
-
-/* Desain Teks Keterangan di Bawah Angka (Hari, Jam, dll) */
-.countdown-card p {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #f704e2; /* Teks warna pink kustom Anda */
-  text-transform: uppercase; /* Otomatis menjadi huruf kapital */
-  letter-spacing: 1px;
-  margin-bottom: 50%;
-}
-
-/* 🛠️ SESUAIKAN KODE FOTO ANDA (Hapus display:block, margin-left/right lama agar tidak merusak posisi kartu) */
-.mempelai-img {
- width: 140px !important; /* Mengunci lebar horizontal foto pria */
-  height: 175px !important; /* Mengunci tinggi vertikal foto pria */
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 10px;
-  box-shadow: 0px 5px 30px rgba(255, 3, 171, 0.5);
-  outline: 3px solid #f704e2;
-  /* margin-top atau margin-bottom silakan disesuaikan jika butuh jarak atas luar */
-  opacity: 0;
-  transform: translateX(-100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.mempelai1-img {
- width: 140px !important; /* Mengunci lebar horizontal foto pria */
-  height: 175px !important; /* Mengunci tinggi vertikal foto pria */
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 10px;
-  box-shadow: 0px 5px 30px rgba(255, 3, 171, 0.5);
-  outline: 3px solid #f704e2;
-  /* margin-top atau margin-bottom silakan disesuaikan jika butuh jarak atas luar */
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 5s cubic-bezier(0, 1, 0.5, 1),
-    transform 5s cubic-bezier(0, 1, 0.5, 1);
-}
-
-.mempelai-img.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.mempelai1-img.muncul {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 🛠️ Mengunci dekorasi Love tepat di tengah atas celah kedua foto */
-.love-center-decor {
-  position: absolute; /* 🔒 Bebas melayang tanpa merusak barisan foto */
-  left: 50%; /* Geser ke titik tengah horizontal layar */
-  top: -30px; /* Atur ketinggiannya di atas foto (Sesuaikan angka minus ini dengan jarak atas foto Anda) */
-  transform: translateX(
-    -500%
-  ); /* Trik wajib agar posisinya benar-benar pas di as tengah */
-
-  width: 80px; /* Atur lebar ukuran gambar love agar pas dan estetik */
-  height: auto;
-  z-index: 10; /* Memastikan berada di lapisan depan */
-  pointer-events: none;
-
-  /* Efek animasi denyut jantung lembut (opsional, membuat undangan makin hidup) */
-  animation: heartbeat 2.5s infinite ease-in-out;
-}
-
-/* Kode efek animasi berdenyut lembut */
-@keyframes heartbeat {
-  0% {
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.15);
-  }
-  100% {
-    transform: translateX(-50%) scale(1);
-  }
-}
-
-.mempelai-transition-img {
-  width: 100%; /* 🛠️ Diperbaiki dari 500% menjadi 100% agar mengikuti wadah */
-  max-width: 550px; /* Membatasi ukuran maksimal foto agar estetik */
-  height: auto;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  animation: scaleUp 5s ease-in-out forwards; /* Animasi zoom-in perlahan selama 5 detik */
-  opacity: 1;
-  transition:
-    opacity 1.5s ease-in-out,
-    transform 1.5s ease-in-out;
-}
-
-/* Class bantuan pemicu dari JavaScript */
-.show-flex {
-  display: flex !important;
-  opacity: 1;
-}
-
-/* 🛠️ TAMBAHKAN CLASS INI (Sebelumnya hilang di CSS Anda, sehingga main-page tetap tersembunyi) */
-.show-page {
-  display: block !important;
-  opacity: 1 !important;
-}
-
-/* Animasi zoom-in perlahan selama 5 detik */
-@keyframes scaleUp {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.06);
-  }
-}
-
-.Foto-decor {
-  display: none; /* 🔒 Menyembunyikan halaman ini saat pertama kali web dibuka */
-  opacity: 1;
-  transition: opacity 50s ease-in-out;
-  padding: 20px 20px;
-  background-color: #f7d5f8; /* Warna latar belakang halaman utama yang lembut */
-  min-height: 100vh;
-  text-align: center;
-  z-index: 1;
   padding: 20px;
-  border-left: 10px solid #f704e2; /* Membuat bingkai emas mengelilingi 4 sisi layar */
-  border-right: 10px solid #f704e2; /* Membuat bingkai emas mengelilingi 4 sisi layar */
-  box-sizing: border-box;
-}
-
-.main-wedding-page {
-  display: none; /* 🔒 Menyembunyikan halaman ini saat pertama kali web dibuka */
-  opacity: 1;
-  transition: opacity 50s ease-in-out;
-  padding: 60px 20px;
-  background-color: #f7d5f8; /* Warna latar belakang halaman utama yang lembut */
-  min-height: 100vh;
-  text-align: center;
-  z-index: 1;
-  padding: 20px;
-  border-left: 10px solid #f704e2; /* Membuat bingkai emas mengelilingi 4 sisi layar */
-  border-right: 10px solid #f704e2; /* Membuat bingkai emas mengelilingi 4 sisi layar */
-  box-sizing: border-box;
-}
-
-/* Class bantuan untuk memicu animasi muncul lewat JavaScript */
-.show-page {
-  display: block !important;
-  opacity: 1 !important;
-}
-
-/* Efek menghilangkan sampul saat diklik */
-.fade-out {
-  opacity: 0 !important;
-  pointer-events: none; /* Mencegah interaksi saat menghilang */
-  transition: opacity 50s ease-in-out;
-}
-
-/* Kotak Utama Menu Navigasi Samping Kiri */
-.floating-navbar {
-  /* 🛠️ PERBAIKAN 1: Ganti display: none menjadi flex agar animasi transisi transform bekerja */
-  display: flex;
-  position: fixed;
-  z-index: 9999;
-  flex-direction: column;
-  gap: 20px;
-  padding: 25px 14px;
-  background-color: #f802a6;
-  box-shadow: 5px 0 25px rgba(231, 26, 187, 0.637);
-
-  /* 🛠️ PERBAIKAN 2: Sembunyikan total di awal sebelum tombol dibuka */
-  top: 50%;
-  left: 0px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(-100%); /* Dorong penuh ke kiri luar layar */
-
-  /* Animasi geser menyamping halus */
-  transition:
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    left 0.4s ease,
-    opacity 0.4s ease;
-}
-
-/* 🛠️ PERBAIKAN 3: Saat tombol dibuka, pemicu ini hanya memunculkan wujudnya saja dengan status default KE-HIDE */
-.show-navbar {
-  display: flex !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  /* Tetap berada di kiri luar layar, hanya menyisakan tombol panah hitamnya saja */
-  transform: translateY(-50%) translateX(-100%) !important;
-  left: 0px !important;
-}
-
-/* 🛠️ PERBAIKAN 4: Class pemicu saat tombol panah DIKLIK untuk MEMBUKA menu secara utuh */
-.floating-navbar.open-mode {
-  transform: translateY(-50%) translateX(0%) !important;
-  left: 20px !important;
-}
-
-/* Desain Tombol Panah (Sumbu Y Penuh) */
-.nav-toggle-btn {
-  position: absolute;
-  top: 0;
-  right: -25px;
-  height: 100%;
-  width: 25px;
-  background-color: #000000;
-  border: none;
-  border-radius: 0 20px 20px 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 2px 0 10px rgba(247, 0, 173, 0.5);
-}
-
-.nav-toggle-btn span {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #f802a6;
-}
-
-/* Otomatis sembunyikan icon menu saat navbar merapat ke kiri luar agar rapi */
-.floating-navbar:not(.open-mode) .nav-item {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.floating-navbar .nav-item {
-  /* 🛠️ PERBAIKAN 1: Hapus background: none dan ganti dengan warna background kustom */
-  background-color: #f7f7f7; /* Warna abu-abu terang yang lembut (Bisa diganti pink transparan/emas) */
-  border: 1px solid #e0e0e0; /* Garis tepi tipis agar tombol terlihat tegas */
-
-  /* 🛠️ PERBAIKAN 2: Berikan ruang di dalam tombol agar background meluas rapi */
-  padding: 10px 14px;
-  width: 100%; /* Memaksa lebar tombol penuh mengikuti kotak navbar */
-  min-width: 75px; /* Menjaga lebar minimal agar teks tidak terpotong */
-
-  /* 🛠️ PERBAIKAN 3: Membuat sudut kotak background tombol sedikit melengkung */
-  border-radius: 10px;
-
-  /* Pengaturan teks tetap rapi */
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #4a4a4a;
-  transition: all 0.3s ease; /* Membuat efek transisi warna saat disentuh menjadi halus */
-}
-
-.floating-navbar .nav-item:hover {
-  background-color: #f781cf; /* Berubah menjadi warna pink cerah kustom Anda */
-  color: #ffffff; /* Tulisan otomatis berubah jadi putih bersih saat ditekan */
-  border-color: #f781cf;
-  transform: scale(
-    1.05
-  ); /* Efek tombol sedikit membesar lembut saat disentuh */
-}
-
-.weddings {
-  display: none; /* 🔒 Tetap biarkan dikunci sembunyi di awal agar tidak bocor */
-  opacity: 1;
-  padding: 20px 20px;
-  background-color: #f7d5f8;
-  min-height: 100vh;
-  text-align: center;
-  z-index: 1;
-  border-left: 10px solid #f704e2;
-  border-right: 10px solid #f704e2;
-  box-sizing: border-box;
-}
-
-/* 🛠️ UTAMA: Tambahkan class ini agar JavaScript bisa membuka kuncinya saat tombol diklik */
-.weddings.show-page {
-  display: block !important;
-  opacity: 1 !important;
-}
-
-.text3 {
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: #e203ff;
-}
-
-.text4 {
-  color: #000000;
-  font-family: "Domine", serif;
-  font-weight: 900;
-  margin-bottom: 25px;
-}
-
-.decorationn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  max-width: 380px;
-  margin: 10px auto;
-
-  /* Memasang gambar kubah langsung sebagai background CSS */
-  background: url("images/Background1.png") no-repeat center top;
-  background-size: 95% 95%; /* Memaksa gambar kubah melar mengikuti panjang seluruh teks */
-
-  /* Memberikan jarak aman di dalam kubah agar teks tidak menempel ke garis tepi */
-  padding: 60px 30px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-/* 🛠️ SINKRONISASI: Samakan juga dengan huruf kapital di HTML Anda (Program-item) */
-.Program-item {
-  opacity: 0;
-  transform: translateY(50px); /* Didorong ke bawah sejauh 50px */
-
-  /* Efek transisi pergerakan yang super halus */
-  transition:
-    opacity 1.2s cubic-bezier(0.5, 1, 0.5, 1),
-    transform 1.2s cubic-bezier(0.5, 1, 0.5, 1);
-
-  margin-bottom: 45px; /* Jarak renggang antar blok acara */
-}
-
-.Program-item:last-child {
-  margin-bottom: 0;
-}
-
-.Program-item.muncul-up {
-  opacity: 1 !important;
-  transform: translateY(0) !important; /* Kembali ke posisi asli */
-}
-
-.icon {
-  color: #000000;
-  width: 50px;
-  height: 50px;
-  margin: auto;
-  min-height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: 3px solid #000000;
-  overflow: unset;
-  outline-offset: -5px;
-  border-radius: 12px;
-}
-
-.text-judul {
-  font-family: "Edu VIC WA NT Hand Pre", cursive;
-  font-optical-sizing: auto;
-  color: #000000;
-  font-size: 2rem;
-}
-
-.time {
-  color: #000000;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 950;
-  margin-top: 0px;
-}
-
-.program-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 500px;
-  padding: 10px 36px; /* Dipertebal dari sebelumnya 12px 28px */
-  background-color: #000000;
-  color: #ff00ea;
-  border: none;
-  border-radius: 30px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.3rem; /* Sebelumnya 0.9rem */
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  margin-top: 5px;
-}
-
-.program-location:hover {
-  background-color: #ffffff; /* Berubah menjadi warna pink cerah kustom Anda */
-  color: #ff00ea; /* Tulisan otomatis berubah jadi putih bersih saat ditekan */
-  transform: scale(1.05);
-}
-
-.hari {
-  color: #000000;
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-
-.story {
-  display: none; /* 🔒 Tetap biarkan dikunci sembunyi di awal agar tidak bocor */
-  opacity: 1;
-  position: relative;
-  padding: 20px 20px;
-  background-color: #f7d5f8;
-  min-height: 100vh;
-  text-align: center;
-  z-index: 1;
-  border-left: 10px solid #f704e2;
-  border-right: 10px solid #f704e2;
-  box-sizing: border-box;
-}
-
-.text5 {
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: #000000;
-  margin-top: 20px;
-}
-
-.text6 {
-  color: #e203ff;
-  font-family: "Pacifico", cursive;
-  font-weight: 590;
-  margin-bottom: 25px;
-}
-
-.story-foto {
-  width: 100%; /* 🛠️ Diperbaiki dari 500% menjadi 100% agar mengikuti wadah */
-  max-width: 350px; /* Membatasi ukuran maksimal foto agar estetik */
-  height: auto;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  outline: 5px solid #e100ff;
-  opacity: 0;
-  transform: translateX(-100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.story-foto.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.kisah {
-  display: flex;
-  flex-wrap: wrap; /* 🔄 WAJIB ADA agar elemen yang penuh (garis) otomatis turun ke bawah */
-  align-items: center; /* Membuat posisi gambar tahun sejajar tengah dengan teks */
-  justify-content: space-between; /* Merenggangkan tahun ke kiri murni dan teks ke kanan murni */
-  max-width: 500px; /* Batas lebar maksimal area cerita agar pas di HP */
-  margin: 30px auto;
-  padding: 0 15px;
-}
-
-.image-text {
-  width: 25%;
-  max-width: 100px;
-  height: auto;
-  display: block;
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.image-text.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.image-text1 {
-  width: 25%;
-  max-width: 100px;
-  height: auto;
-  display: block;
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.image-text1.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.image-text2 {
-  width: 25%;
-  max-width: 100px;
-  height: auto;
-  display: block;
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.image-text2.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.text-kisah {
-  width: 70%; /* Mengambil sisa ruang di sebelah kanan gambar tahun */
-  text-align: left;
-  margin-top: -20px;
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.text-kisah.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.text-kisah1 {
-  width: 70%; /* Mengambil sisa ruang di sebelah kanan gambar tahun */
-  text-align: left;
-  color: #ff169e;
-  margin-top: -20px;
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.text-kisah1.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.text-kisah2 {
-  width: 70%; /* Mengambil sisa ruang di sebelah kanan gambar tahun */
-  text-align: left;
-  color: #ff169e;
-  margin-top: -20px;
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 5s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.text-kisah2.muncul {
-  opacity: 1;
-  transform: translateX(0); /* Meluncur kembali ke posisi asli */
-}
-
-.text-kisah p {
-  font-size: 1rem;
-  color: #ff169e;
-  font-weight: 500;
-  margin: 0; /* Jarak renggang antara tulisan dengan garis di bawahnya */
-}
-
-.garisan {
-  display: block;
-  width: 100%; /* Lebar 100% memaksa garis memanjang penuh dari ujung ke ujung */
-  height: 2px;
-  margin-top: 15px;
-}
-
-.moment {
-  display: none; /* 🔒 Tetap biarkan dikunci sembunyi di awal agar tidak bocor */
-  opacity: 1;
-  position: relative;
-  padding: 20px 20px;
-  background-color: #f7d5f8;
-  min-height: 100vh;
-  text-align: center;
-  z-index: 1;
-  border-left: 10px solid #f704e2;
-  border-right: 10px solid #f704e2;
-  box-sizing: border-box;
-}
-
-.batasann {
-  width: 100%;
-  max-width: 500px;
-  margin-top: -5px;
-}
-
-/* Wadah Utama Penyeimbang Tombol dan Foto */
-.gallery-carousel-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px; /* 🛠️ Menggunakan vw agar jarak atas-bawah fleksibel mengikuti layar */
-  width: 100%;
-  max-width: 480px; /* Batas maksimal di layar PC agar foto tidak terlalu raksasa */
-  margin: 40px auto; /* Memaksa seluruh rangkaian berada di tengah halaman */
-  padding: 0 5%; /* Jarak aman 5% dari tepi layar kanan-kiri di HP */
-  position: relative;
-  box-sizing: border-box;
-}
-
-/* Jendela Intip Foto */
-.gallery-viewport {
-  width: 85%; /* 🛠️ Tetap 85% dari wadah induk sesuai keinginan Anda */
-  max-width: 450px;
-  margin: 0 auto;
-  overflow: hidden; /* Memotong sisa gambar yang keluar dari lengkungan */
-  border-radius: 15px; /* 🛠️ Kelengkungan sudut ikut mengecil/membesar otomatis */
-  box-shadow: 0 10px 30px rgba(247, 4, 226, 0.2);
-  aspect-ratio: 4 / 5; /* 🔒 KUNCI UTAMA: Memastikan bentuk foto tidak akan pernah penyok/gepeng */
-  outline: 3px solid #c237d4;
-  box-sizing: border-box;
-  margin-top: -50px;
-  position: relative;
-}
-
-/* ➕ UTAMA: Kotak pembungkus kedua tombol agar berjejer rapi di bawah foto */
-.gallery-controls-bottom {
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-  width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 10;
-  gap: 350px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Rel Kereta Slider: Tempat berbarisnya semua foto ke samping */
-.gallery-slider {
-  display: flex;
-  width: 100% !important;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-}
-
-/* Setiap Bingkai Item Foto di Dalam Slider */
-.slide-item {
-  position: absolute;
-  top: 0;
-  left: 0;
+.cover-content {
+  padding: 20px;
+  max-width: 420px;
   width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.6s ease-in-out;
-  z-index: 1;
-}
-
-/* Class bantuan khusus untuk foto yang sedang aktif tampil di layar */
-.slide-item.active {
-  opacity: 1;
   z-index: 2;
 }
 
-.slide-item img {
+.sub-title {
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  color: #642b16;
+  font-weight: 500;
+}
+
+.nama-mempelai {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.50rem, 8vw, 3.8rem); /* Skala responsif mengikuti layar */
+  font-weight: 900;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: #3b1101;
+}
+
+.tamu-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0px;
+  color:#2c0d01;
+  font-weight: 500%;
+}
+
+.tamu-nama {
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+  padding: 10px 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  margin: 40px;
+  color: #3b1101;
+  word-break: break-word;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  
+}
+
+/* TOMBOL BUKA UNDANGAN */
+.btn-buka {
+  background-color: #3b1101;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(59, 17, 1, 0.4);
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.btn-buka:hover {
+  background-color: #ff9b74;
+  transform: scale(1.05);
+}
+
+/* ==========================================
+   3. KONTEN UTAMA UNDANGAN
+   ========================================== */
+.konten-utama {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Lebar disamakan persis dengan cover */
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto; /* Membuat konten berada di tengah dengan sisa ruang di pinggir */
+  display: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),
+    url("images/background2.png") center/cover no-repeat;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.konten-utama.tampil {
+  display: block;
+  opacity: 1;
+}
+
+/* ==========================================
+   4. HALAMAN PEMBUKA FOTO & ANGKA (PEMBAHASAN KE-2)
+   ========================================== */
+.section-hero {
+  padding: 40px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  max-width: 450px;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5; /* Menjaga rasio foto di semua device */
+  object-fit: cover;
+  display: block;
+}
+
+.tanggal-acara {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  padding: 8px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.section-hero-foto {
+  padding: 40px 15px 60px;
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.foto-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 25px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+
+.foto-pembuka {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5; /* Rasio potret fleksibel */
+  object-fit: cover;
+  display: block;
+}
+
+.angka-tanggal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-family: "Molle", cursive;
+  font-size: clamp(10rem, 8vw, 5rem); /* Diperbaiki: min 3rem, max 5rem */
+  font-weight: 800;
+
+  /* MENJADIKAN TEKS OUTLINE SAJA */
+  color: transparent; /* Membuat bagian dalam angka bening/transparan */
+  -webkit-text-stroke: 1px #ddc7b2; /* Ketebalan dan warna garis tepi */
+
+  line-height: 1;
+  z-index: 5;
+  user-select: none;
+}
+
+.hero-text-card {
+  background: rgba(
+    248,
+    246,
+    240,
+    0.85
+  ); /* Latar belakang lembut penutup bunga */
+  backdrop-filter: blur(8px); /* Efek buram modern */
+  -webkit-backdrop-filter: blur(8px);
+  padding: 25px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  max-width: 450px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.hero-text-card .judul-mempelai {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.2rem, 6vw, 2.8rem);
+  color: #3b1101;
+  margin-bottom: 12px;
+}
+
+.hero-text-card .tek-ayat {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  color: #4a3b32;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.hero-text-card .sumber-ayat {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d4af37;
+  letter-spacing: 1px;
+}
+
+.section-welcome {
+  padding: 40px 20px 80px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-welcome h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: #d4af37;
+  margin-bottom: 15px;
+}
+
+.section-welcome p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* ==========================================
+   5. MEDIA QUERIES (PENYESUAIAN LAYAR SPESIFIK)
+   ========================================== */
+
+/* Layar Ponsel Kecil (Max: 480px) */
+@media screen and (min-width: 768px) {
+  .cover-container {
+    /* Tetap gunakan cover agar tidak muncul sisa ruang kuning di atas & bawah */
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),
+      url("images/background1.png") center/cover no-repeat;
+  }
+
+  .cover-content {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-hero-foto {
+    padding: 20px 10px 40px;
+  }
+
+  .foto-wrapper {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .angka-tanggal {
+    top: 12px;
+    right: 12px;
+  }
+
+  .hero-text-card {
+    padding: 20px 15px;
+    width: 95%;
+  }
+}
+
+/* ==========================================
+   PEMBAHASAN KE-3: SECTION INFORMASI MEMPELAI
+   ========================================== */
+.section-mempelai {
+  padding: 50px 20px 70px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.mempelai-header {
+  margin-bottom: 35px;
+  background: rgba(248, 246, 240, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.salam-pembuka {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #3b1101;
+  margin-bottom: 8px;
+}
+
+.teks-pengantar {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #4a3b32;
+}
+
+/* CONTAINER MEMPELAI */
+.mempelai-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.mempelai-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(109, 23, 23, 0);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 25px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(190, 129, 89, 0);
+}
+
+/* FOTO PROFILE LINGKARAN */
+.foto-profile-wrapper {
+  width: 230px;
+  height: 260px;
+  border-radius: 10%;
+  padding: 2px;
+  background: linear-gradient(135deg, #be8259, #f8f6f0, #be8259);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.foto-profile {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Memotong tepi foto otomatis agar proporsinya selalu pas */
+  border-radius: 10%;
+  object-fit: cover;
   display: block;
-  object-position: center top;
 }
 
-/* Desain Tombol Kiri-Kanan Bulat Elegan */
-/* Desain Tombol Bulat Anda (Tetap Dipertahankan) */
-.carousel-btn {
-  /* 🛠️ Trik clamp: ukuran minimal 40px, ukuran ideal 4.5vw, ukuran maksimal 50px */
-  width: clamp(100px, 10px, 50px);
-  height: clamp(60px, 10px, 50px);
+/* TEKS INFORMASI */
+.nama-mempelai-lengkap {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #3b1101;
+  margin-bottom: 8px;
+}
 
-  background: none;
-  border: none;
-  border-radius: 15px; /* Mengikuti model tombol melengkung kustom Anda */
-  margin-top: 25px;
+.orang-tua {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #555555;
+  margin: 0;
+}
 
-  /* 🛠️ Ukuran icon panah otomatis menyesuaikan */
-  font-size: clamp(3rem, 1.2vw, 1.4rem);
-  font-weight: bold;
-  color: #f704e2;
-  cursor: pointer;
+/* SIMBOL DAN (&) */
+.simbol-dan {
+  font-family: "Dancing Script", cursive;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #be8259;
+  margin: -5px 0;
+}
+
+/* ==========================================
+   PEMBAHASAN KE-4: SECTION ACARA & COUNTDOWN
+   ========================================== */
+.section-acara {
+  padding: 20px 20px 60px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* COUNTDOWN TIMER CARD */
+.countdown-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 25px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(190, 130, 89, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.judul-section {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #3b1101;
+  margin-bottom: 20px;
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.countdown-box {
+  background: #3b1101;
+  color: #ffffff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  min-width: 65px;
+  box-shadow: 0 4px 10px rgba(59, 17, 1, 0.2);
+}
+
+.countdown-box span {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: block;
+  line-height: 1.2;
+}
+
+.countdown-box p {
+  font-size: 0.7rem;
+  opacity: 0.85;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CARDS AKAD & RESEPSI */
+.acara-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 30px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(190, 130, 89, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.nama-acara {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #be8259;
+  margin-bottom: 15px;
+}
+
+.info-waktu {
+  margin-bottom: 15px;
+}
+
+.info-waktu .tanggal {
+  font-weight: 700;
+  color: #3b1101;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.info-waktu .jam {
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+.info-lokasi {
+  margin-bottom: 20px;
+}
+
+.info-lokasi .nama-tempat {
+  font-weight: 600;
+  color: #3b1101;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.info-lokasi .alamat-tempat {
+  font-size: 0.85rem;
+  color: #666666;
+  line-height: 1.5;
+  padding: 0 10px;
+}
+
+/* TOMBOL GOOGLE MAPS */
+.btn-maps {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
+  gap: 8px;
+  background-color: #3b1101;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(59, 17, 1, 0.25);
   transition: all 0.3s ease;
-  gap: -50px;
 }
 
-.carousel-btn:hover {
-  transform: scale(1.3);
-  opacity: 0.8;
+.btn-maps:hover {
+  background-color: #be8259;
+  transform: translateY(-2px);
 }
 
-.text7,
-.text8 {
-  font-size: 1.5rem;
-  color: #ff5ff2;
-  margin-top: 20px;
-  font-style: italic;
+/* ==========================================
+   PEMBAHASAN KE-5: SECTION GALERI BINGKAI
+   ========================================== */
+.section-galeri {
+  padding: 20px 20px 60px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-.ucapandoa {
-  display: none; /* 🔒 Tetap biarkan dikunci sembunyi di awal agar tidak bocor */
-  opacity: 1;
+.galeri-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 30px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(190, 130, 89, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.sub-galeri {
+  font-size: 0.85rem;
+  color: #555555;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* BINGKAI FOTO */
+.bingkai-foto {
   position: relative;
-  padding: 10px 20px;
-  background-color: #f7d5f8;
-  min-height: 100vh;
-  text-align: center;
-  z-index: 1;
-  border-left: 10px solid #f704e2;
-  border-right: 10px solid #f704e2;
-  box-sizing: border-box;
-}
-
-/* Desain Kotak Background untuk Area Ucapan & Doa */
-.rsvp-bg-box {
-  width: 85%; /* Lebar kotak disamakan dengan galeri (85%) agar serasi */
-  max-width: 550px; /* Batas lebar maksimal agar rapi di HP dan PC */
-  margin: 50px auto; /* Memaksa kotak background berada tepat di tengah halaman */
-
-  background-color: #ff9be6; /* Latar belakang putih bersih agar teks di atasnya menonjol */
-  outline: 4px solid #f873ed;
-
-  /* 📐 BERIKAN JARAK AMAN DI DALAM KOTAK: Atas-bawah 40px, Kiri-kanan 25px */
-  padding: 20px 20px;
-  box-shadow: 0 0px 20px rgba(247, 4, 227, 0.342); /* Efek bayangan pink tipis khas Anda */
-  box-sizing: border-box;
-  text-align: center;
-}
-
-/* Wadah Utama Kotak Buku Tamu */
-.guestbook-container {
-  width: 95%; /* Lebar kotak menyamai persentase galeri (85%) agar selaras */
-  max-width: 550px; /* Batas maksimal lebar agar rapi di HP dan PC */
-  margin: 30px auto; /* Memaksa kotak berada tepat di tengah halaman */
-  padding: 20px 20px;
-  border-radius: 15px; /* Sudut kotak dibuat melengkung manis */
-  box-shadow: 0 10px 30px rgba(247, 4, 226, 0.15); /* Efek bayangan pink tipis khas Anda */
-  box-sizing: border-box;
-  margin-top: 5px;
-}
-
-/* Mengatur Jarak Tiap Kolom Input */
-.input-group {
-  margin-bottom: 15px;
   width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  background-color: #f8f6f0;
 }
 
-/* Desain Komponen Kolom Ketik Nama dan Teks Area */
-.input-group input,
-.input-group textarea {
+/* FOTO SLIDE & ANIMASI TRANSISI 1 DETIK */
+.foto-slide {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px; /* Sudut dalam kolom ketik dibuat melengkung halus */
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out; /* Durasi animasi memudar */
+}
+
+.foto-slide.active {
+  opacity: 1;
+}
+
+/* ==========================================
+   PEMBAHASAN KE-6: SECTION RSVP & BUKU TAMU
+   ========================================== */
+.section-rsvp {
+  padding: 20px 20px 60px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.rsvp-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 30px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(190, 130, 89, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.sub-rsvp {
+  font-size: 0.85rem;
+  color: #555555;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+/* FORM STYLING */
+.form-rsvp {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3b1101;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(190, 130, 89, 0.4);
+  background: rgba(255, 255, 255, 0.9);
   font-family: "Montserrat", sans-serif;
-  font-size: 0.9rem;
-  color: #4a4a4a;
-  box-sizing: border-box;
+  font-size: 0.85rem;
+  color: #333333;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
-/* Efek saat kolom sedang diklik/diketik tamu */
-.input-group input:focus,
-.input-group textarea:focus {
-  border-color: #f704e2; /* Garis tepi berubah pink cerah kustom Anda */
-  background-color: #ffffff;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #3b1101;
 }
 
-/* Mematikan fitur tarik manual textarea agar ukurannya tidak merusak layout */
-.input-group textarea {
-  resize: none;
-}
-
-/* Desain Tombol Kirim Pink Bulat Kapsul */
-.btn-send-wish {
-  width: 100%; /* 🛠️ Pastikan tetap 100% agar memenuhi lebar kotak input-group */
-  background-color: #f704e2;
+.btn-kirim {
+  background-color: #3b1101;
   color: #ffffff;
   border: none;
   padding: 12px;
   border-radius: 25px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.95rem;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(247, 4, 226, 0.3);
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  margin-top: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 17, 1, 0.2);
 }
 
-.btn-send-wish.muncul-input {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+.btn-kirim:hover {
+  background-color: #be8259;
+  transform: translateY(-2px);
 }
 
-.btn-send-wish:hover {
-  background-color: #000000; /* Berubah menjadi hitam elegan saat disentuh */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px); /* Efek membal ke atas sedikit saat diklik */
-}
-
-/* Wadah Penampung Daftar Ucapan yang Muncul di Bawah Form */
-.wishes-display-box {
-  margin-top: 25px;
-  max-height: 550px; /* Batasi tinggi box ucapan agar tidak melorot terlalu panjang */
-  overflow-y: auto; /* Otomatis memunculkan scrollbar internal jika ucapan sudah sangat banyak */
+/* DAFTAR PESAN */
+.daftar-pesan-container {
   text-align: left;
+  border-top: 1px solid rgba(190, 130, 89, 0.3);
+  padding-top: 20px;
+}
+
+.judul-daftar-pesan {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  color: #3b1101;
+  margin-bottom: 15px;
+}
+
+.list-pesan {
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   padding-right: 5px;
 }
 
-/* 🛠️ UTAMA: Kotak Latar Belakang & Sistem Scroll List Ucapan Tamu */
-.wishes-display-container {
-  margin-top: 25px;
-  padding: 15px 10px;
-  border-top: 3px solid rgba(255, 0, 212, 0.5);
-
-  /* 🔒 KUNCI UTAMA: Membatasi tinggi kotak agar tidak melorot bocor ke bawah */
-  max-height: 350px; /* Tinggi kotak dikunci 220px (Sesuaikan jika ingin lebih tinggi/pendek) */
-
-  /* 🔄 KUNCI AUTOMATIC SCROLLBAR */
-  overflow-y: auto; /* 🛠️ Memaksa munculnya scrollbar tegak lurus jika teks ucapan sudah menumpuk penuh */
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px; /* Jarak antar kartu ucapan putih */
-  box-sizing: border-box;
-}
-
-/* 🎨 BONUS: Mempercantik tampilan batang scrollbar agar tipis dan estetik (Khusus Google Chrome/HP) */
-.wishes-display-container::-webkit-scrollbar {
-  width: 5px; /* Membuat lebar batang scroll sangat tipis (Ramping) */
-}
-
-.wishes-display-container::-webkit-scrollbar-track {
-  background: transparent; /* Membuat jalur rel scroll transparan */
-}
-
-.wishes-display-container::-webkit-scrollbar-thumb {
-  background: #f704e2; /* Mengubah warna tombol geser scroll menjadi pink serasi */
-  border-radius: 10px;
-}
-
-.wish-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  background-color: #ffffff;
-  padding: 15px 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  text-align: left;
-
-  /* 🛠️ Tambahkan baris ini agar kartu putih terlipat rapi di dalam kotak scroll */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* 🛠️ UTAMA: Memberikan warna background solid pada bulatan profil komentar */
-.wish-profile-avatar {
-  width: 40px;
-  height: 40px;
-  min-width: 40px; /* Menjaga ukuran bulatan agar tidak menciut saat teks pesan panjang */
-
-  /* 🛠️ PERBAIKAN: Ganti atau pastikan warna background terisi pink pekat kustom Anda */
-  background-color: #f704e2; /* Menggunakan warna pink cerah yang sama dengan warna tombol */
-
-  border-radius: 50%; /* Membuat bentuk lingkaran bulat sempurna */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-/* Mengatur tampilan huruf inisial di dalam bulatan pink */
-.wish-profile-avatar span {
-  /* 🛠️ PERBAIKAN: Ubah warna huruf menjadi putih murni agar kontras dan terbaca jelas */
-  color: #ffffff !important;
-  font-weight: bold;
-  font-size: 1.1rem;
-  font-family: "Montserrat", sans-serif;
-}
-
-/* 1. Default Awal: Semua kotak input disembunyikan dan didorong ke bawah */
-.rsvp-bg-box .input-group {
-  opacity: 0;
-  transform: translateY(30px); /* Didorong ke bawah sejauh 30px */
-
-  /* Efek transisi pergerakan yang super halus */
-  transition:
-    opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* 🛠️ UTAMA: Class pemicu dari JavaScript agar kotak meluncur naik satu per satu */
-.rsvp-bg-box .input-group.muncul-input {
-  opacity: 1 !important;
-  transform: translateY(0) !important; /* Kembali ke posisi asli */
-}
-
-/* Menghias kolom pilihan menu dropdown konfirmasi */
-.input-group select {
-  width: 100%;
+/* ITEM PESAN INDIVIDUAL */
+.item-pesan {
+  background: rgba(248, 246, 240, 0.8);
   padding: 12px 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.9rem;
-  color: #4a4a4a;
-  background-color: #fafafa;
-  box-sizing: border-box;
-  outline: none;
-  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid rgba(190, 130, 89, 0.2);
 }
 
-.input-group select:focus {
-  border-color: #f704e2;
-  background-color: #ffffff;
-}
-
-/* Mengatur tata letak Nama dan Label Status Kehadiran agar sejejeran */
-.wish-header-meta {
+.header-pesan {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap; /* Supaya otomatis turun ke bawah nama dengan rapi di layar HP kecil */
-  margin-bottom: 3px;
+  margin-bottom: 6px;
 }
 
-/* Aturan Teks Kapsul Label Kehadiran Umum */
-.status-badge {
-  font-size: 0.7rem;
-  font-weight: bold;
-  padding: 2px 8px;
-  border-radius: 20px;
-  text-transform: uppercase;
-}
-
-/* 🟢 Gaya untuk label HADIR (Warna latar hijau tulisan gelap) */
-.status-badge.badge-hadir {
-  background-color: #e6f9ed;
-  color: #1f9254;
-}
-
-/* 🔴 Gaya untuk label TIDAK HADIR (Warna latar merah/pink transparan tulisan merah) */
-.status-badge.badge-absen {
-  background-color: #ffebe9;
-  color: #f63c3c;
-}
-
-.giftpage {
-  display: none; /* 🔒 Tetap biarkan dikunci sembunyi di awal agar tidak bocor */
-  opacity: 1;
-  position: relative;
-  padding: 10px 20px;
-  background-color: #f7d5f8;
-  min-height: 100vh;
-  text-align: center;
-  z-index: 1;
-  border-left: 10px solid #f704e2;
-  border-right: 10px solid #f704e2;
-  box-sizing: border-box;
-}
-
-.text9 {
-  font-weight: 500;
-  color: #000000;
-}
-
-/* Wadah Utama Tempat Kartu Berbaris Turun */
-.gift-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 25px; /* Jarak celah antar kartu bank */
-  width: 100%;
-  max-width: 450px; /* Batas lebar maksimal kartu agar rapi di HP & PC */
-  margin: 35px auto; /* Memaksa rangkaian kartu berada di as tengah halaman */
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-/* Desain Dasar Setiap Kartu Hadiah (Default Terkunci Sembunyi) */
-.gift-address-card {
-  width: 85%; /* Lebar serasi dengan komponen gallery & rsvp (85%) */
-  text-align: center;
-  box-sizing: border-box;
-
-  /* 🔒 KUNCI ANIMASI AWAL: Dorong ke bawah dan buat transparan */
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* 🛠️ Trigger menyalakan wujud kartu saat layar digulung masuk */
-.gift-address-card.muncul-gift {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* Gaya Teks Nama Bank / Informasi */
-.bank-name {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #000000;
-  letter-spacing: 1px;
-  margin: 0 0 8px 0;
-}
-
-/* Gaya Angka Rekening / Isi Alamat */
-.account-number {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1a1a1a; /* Teks angka berwarna pink khas website Anda */
-  margin: 0 0 5px 0;
-  word-break: break-all; /* Mencegah teks alamat bocor ke samping di HP kecil */
-}
-
-/* Nama Pemilik Rekening */
-.account-name {
+.nama-pengirim {
   font-size: 0.85rem;
-  color: #000000;
-  margin: 0 0 15px 0;
+  font-weight: 700;
+  color: #3b1101;
 }
 
-/* Desain Tombol Salin Kapsul Lonjong Pink */
-.btn-copy-gift {
-  background-color: #f704e2;
-  color: #ffffff;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 5px; /* Membuat tombol berbentuk oval modern */
-  font-family: "Montserrat", sans-serif;
+.isi-pesan {
   font-size: 0.8rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(247, 4, 227, 0.418);
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  color: #555555;
+  line-height: 1.4;
 }
 
-.btn-copy-gift:hover {
-  background-color: #000000 !important; /* Berubah hitam elegan saat disentuh */
-  transform: translateY(-2px); /* Efek membal ke atas sedikit */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+/* BADGE STATUS KEHADIRAN */
+.badge-status {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
 }
 
-/* Kotak Tunggal Raksasa Pembungkus Semua Rekening */
-.gift-single-box {
-  width: 85%; /* Lebar menyamai standar persentase halaman Anda (85%) */
-  max-width: 450px;
-  margin: 30px auto; /* Memaksa kotak berada tepat di tengah halaman */
-  border: 2px dashed #f704e2; /* Garis tepi putus-putus pink khas Anda */
-  padding: 25px 20px;
-  border-radius: 15px; /* Lengkungan sudut kotak utama */
-  box-shadow: 0 0px 35px rgba(250, 5, 250, 0.25);
-  box-sizing: border-box;
+.status-hadir {
+  background-color: #e2f0d9;
+  color: #385723;
+}
+
+.status-tidak-hadir {
+  background-color: #fce4d6;
+  color: #c65911;
+}
+
+.status-ragu {
+  background-color: #fff2cc;
+  color: #806000;
+}
+
+/* ==========================================
+   PEMBAHASAN KE-7: AMPLOP DIGITAL & PENUTUP
+   ========================================== */
+
+/* 1. AMPLOP DIGITAL */
+.section-amplop {
+  padding: 20px 20px 40px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.amplop-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 30px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(190, 130, 89, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.sub-amplop {
+  font-size: 0.85rem;
+  color: #555555;
+  line-height: 1.5;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+/* KARTU REKENING */
+.rekening-card {
+  background: rgba(248, 246, 240, 0.9);
+  border-radius: 16px;
+  border: 1px solid rgba(190, 130, 89, 0.3);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.rekening-card:last-child {
+  margin-bottom: 0;
+}
+
+.nama-bank {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #3b1101;
+  letter-spacing: 1px;
+}
+
+.rekening-body {
   margin-top: 10px;
 }
 
-/* Setiap Baris Item Rekening: Teks kiri, tombol kanan sejajar */
-.gift-row-item {
-  display: flex;
-  justify-content: space-between; /* Mendorong teks murni ke kiri dan tombol murni ke kanan */
-  align-items: center; /* Menjaga tinggi posisi tombol tegak lurus di as tengah teks */
-  padding: 15px 0;
-  border-bottom: 1px solid #7a7a7a; /* Garis pembatas tipis antar rekening */
-}
-
-/* Menghilangkan garis pembatas abu-abu khusus pada baris paling terakhir */
-.gift-row-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-.gift-row-item:first-child {
-  padding-top: 0;
-}
-
-/* Area Teks Sebelah Kiri */
-.gift-text-side {
-  text-align: left; /* Memaksa tulisan rata kiri */
-  flex: 1; /* Mengambil sisa ruang kosong ke kiri */
-  padding-right: 10px;
-}
-
-.bank-title {
-  font-size: 0.95rem;
+.nomor-rekening {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
   font-weight: 700;
-  color: #000000;
-  margin: 0 0 2px 0;
+  color: #be8259;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
 }
 
-.account-num {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #f704e2; /* Teks angka berwarna pink cerah kustom Anda */
-  margin: 0 0 2px 0;
+.atas-nama {
+  font-size: 0.85rem;
+  color: #666666;
+  margin-bottom: 15px;
 }
 
-.account-owner {
-  font-size: 0.75rem;
-  color: #000000;
-  margin: 0;
-  font-weight: 500;
-}
-
-/* Tombol Salin Ramping di Sebelah Kanan */
-.btn-copy-inline {
-  background-color: #f704e2;
+.btn-salin {
+  background-color: #3b1101;
   color: #ffffff;
   border: none;
-  padding: 6px 14px;
-  border-radius: 5px; /* Tombol bulat kapsul */
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.75rem;
-  font-weight: bold;
-  cursor: pointer;
-  white-space: nowrap; /* Mencegah teks tombol terlipat ke bawah */
-  box-shadow: 0 3px 8px rgba(247, 4, 226, 0.2);
-  transition: all 0.2s ease;
-}
-
-.btn-copy-inline:hover {
-  background-color: #000000 !important;
-  transform: scale(1.05);
-}
-
-.gift-row-item,
-.gift-address-card {
-  opacity: 0;
-  transform: translateX(
-    80px
-  ); /* 🛠️ Angka positif melambangkan arah KANAN luar */
-
-  /* Efek transisi meluncur lambat yang sangat anggun dan sinematik */
-  transition:
-    opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.gift-row-item.muncul-right,
-.gift-address-card.muncul-right {
-  opacity: 1 !important;
-  transform: translateX(
-    0
-  ) !important; /* Kembali lurus rapi di tengah halaman */
-}
-
-.decor-top_bottom1 {
-  position: absolute; /* 🔒 Mengunci posisi secara bebas di dalam halaman */
-  bottom: 20px; /* Jarak aman 20px dari tepi atas bingkai */
-  left: 20px; /* Jarak aman 20px dari tepi kanan bingkai (Menempel Kanan) */
-  width: 30%;
-  max-width: 200px;
-  height: auto;
-  z-index: 5;
-  transform: scaleY(-1);
-}
-
-.decor-top_bottom {
-  position: absolute; /* 🔒 Mengunci posisi secara bebas di dalam halaman */
-  bottom: 20px; /* Jarak aman 20px dari tepi atas bingkai */
-  right: 20px; /* Jarak aman 20px dari tepi kanan bingkai (Menempel Kanan) */
-  width: 30%;
-  max-width: 200px;
-  height: auto;
-  z-index: 5;
-  transform: scaleY(-1);
-}
-
-.penutup {
-  display: none; /* 🔒 Tetap biarkan dikunci sembunyi di awal agar dibongkar lewat JS */
-  opacity: 1;
-  position: relative;
-
-  /* 🛠️ PERBAIKAN 1: Ubah padding menjadi 0 agar kotak foto & footer bisa melebar penuh tanpa celah */
-  padding: 0;
-
-  background-color: #000000; /* Latar belakang halaman yang lembut */
-  min-height: 95vh;
-  text-align: center;
-  z-index: 1;
-
-  /* Bingkai kiri dan kanan Anda tetap dipertahankan */
-  border-top: 10px solid #f704e2;
-  border-left: 10px solid #f704e2;
-  border-right: 10px solid #f704e2;
-
-  /* 🛠️ PERBAIKAN 2: HAPUS border-bottom 70px lama Anda karena perannya sudah digantikan oleh kotak .footer-copyright */
-  border-bottom: 30px solid #f704e2;
-
-  box-sizing: border-box;
-  overflow: hidden; /* Mencegah elemen bocor merusak garis tepi */
-}
-
-/* 1. Wadah Utama Foto Penutup (Sebagai Jangkar Pengunci) */
-.closing-photo-container {
-  position: relative; /* 🔒 JANGKAR UTAMA: Mengunci semua elemen melayang di dalamnya */
-  width: 100%; /* Lebar penuh sewarna halaman murni */
-  height: 100vh; /* Tinggi penuh 100% satu layar kaca agar megah */
-  overflow: hidden; /* Memotong sisa gambar agar rapi di dalam bingkai */
-  box-sizing: border-box;
-}
-
-/* 2. Pengaturan Gambar Foto di dalamnya */
-.closing-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 🛠️ Mengunci foto agar tetap proporsional memenuhi seluruh layar */
-  display: block;
-  animation: zoomSinematik 8s ease-in-out infinite alternate;
-}
-
-@keyframes zoomSinematik {
-  0% {
-    /* Titik awal: Ukuran foto normal murni (100%) */
-    transform: scale(1);
-  }
-  100% {
-    /* Titik puncak: Foto membesar perlahan sebanyak 8% dari ukuran asli */
-    transform: scale(1.08);
-  }
-}
-
-/* 3. 🛠️ UTAMA: Kotak teks melayang pas di dalam outline bawah foto */
-.text10 {
-  position: absolute; /* 🔒 Mencabut kotak dari alur biasa agar melayang di atas foto */
-
-  /* 🛠️ PERBAIKAN: Ditempatkan pas di atas kotak copyright pink (naik 45px dari dasar bawah) */
-  bottom: 100px;
-  left: 0;
-  width: 100%;
-  color: #ff88f9;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.61
-  ); /* Hitam transparan elegan agar foto di belakangnya samar terlihat */
-  padding: 20px 10px;
-  box-sizing: border-box;
-  text-align: center;
-  z-index: 10;
-}
-
-.mempelaii {
-  font-family: "Pacifico", cursive;
-  font-weight: 100;
-}
-
-.text0 {
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* 🛠️ PERBAIKAN UTAMA: Mengubah bingkai kosong menjadi kotak teks copyright merah muda */
-.footer-copyright {
-  position: absolute; /* 🔒 Mencabut kotak agar melayang mengunci di paling dasar */
-  bottom: 0; /* 📐 Menempel pas di ujung garis dasar bawah foto */
-  left: 0;
-  width: 100%;
-  background-color: #f704e2; /* Warna pink pekat utama Anda */
-  padding: 12px 10px;
+.btn-salin:hover {
+  background-color: #be8259;
+}
+
+.btn-salin.berhasil {
+  background-color: #2e7d32;
+}
+
+/* 2. PENUTUP UNDANGAN */
+.section-penutup {
+  padding: 20px 20px 80px;
   text-align: center;
-  box-sizing: border-box;
-  z-index: 15; /* Lapisannya paling depan menindih dasar foto */
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-/* Menghias huruf teks copyright di dalam bingkai pink */
-.footer-copyright p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #ffffff; /* Tulisan putih bersih agar kontras di atas warna pink */
-  margin: 0;
-  letter-spacing: 1px;
+.penutup-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 35px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(190, 130, 89, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
 }
 
-/* Kotak Utama Pembungkus Kredit Pembuat */
-.creator-credits {
-  margin-top: 10px; /* Jarak celah di bawah teks copyright */
+.teks-penutup {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #4a3b32;
+  margin-bottom: 15px;
+}
+
+.salam-penutup {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3b1101;
+  margin-bottom: 30px;
+}
+
+.salam-hormat {
+  font-size: 0.8rem;
+  color: #666666;
+  margin-bottom: 8px;
+}
+
+.nama-penutup {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #be8259;
+}
+
+/* ==========================================
+   TOMBOL MUSIK POJOK KANAN ATAS (BERPUTAR)
+   ========================================== */
+.btn-musik-floating {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(59, 17, 1, 0.85);
+  color: #ffffff;
+  border: 2px solid #d4af37;
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease;
+}
+
+.icon-musik {
+  width: 22px;
+  height: 22px;
+}
+
+/* Animasi Berputar saat Musik Aktif */
+.btn-musik-floating.play {
+  animation: putarMusik 4s linear infinite;
+}
+
+@keyframes putarMusik {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   PENYESUAIAN WARNA NAVIGASI DENGAN TEMA UNDANGAN
+   ========================================== */
+
+/* CONTAINER UTAMA POSISI BAWAH LAYAR */
+.bottom-nav-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  z-index: 998;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Gaya Tulisan Nama Pembuat */
-.creator-text {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8); /* Putih transparan agar minimalis */
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-/* Kelompok Tombol Ikon Agar Sejajar Horizontal ke Samping */
-.social-icons-group {
+/* PANEL BAR (Diubah dari Pink ke Cokelat Tua / Earth Tone) */
+.nav-content-pink {
+  background-color: #3b1101; /* Cokelat tua pekat sesuai warna undangan */
+  padding: 8px 16px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 15px; /* Jarak renggang antar bulatan tombol */
+  gap: 12px;
+  box-shadow: 0 -4px 15px rgba(59, 17, 1, 0.3);
 }
 
-/* 🛠️ UTAMA: Gaya Dasar Setiap Bulatan Tombol (Berlaku untuk Tag <a> maupun <button>) */
-/* Pengaturan lingkaran luar tombol Anda tetap dipertahankan */
-.social-btn-item {
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border: none !important;
-  outline: none !important;
-  width: 38px; /* Diperbesar sedikit dari 35px agar ikon gambar terlihat jelas */
-  height: 38px;
+/* GAYA TOMBOL IKON */
+.btn-icon {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 8px;
   border-radius: 50%;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-  overflow: hidden; /* Memotong paksa sudut gambar jika melesat keluar lingkaran */
+  color: #f3e9e3; /* Warna krem lembut untuk ikon */
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
 }
 
-/* 🛠️ UTAMA: Mengunci ukuran gambar logo di dalam lingkaran agar presisi */
-.social-btn-item img {
-  width: 60%; /* Mengambil 60% ruang dalam lingkaran agar ada sisa ruang napas di tepi */
-  height: 60%;
-  object-fit: contain; /* 🔒 Memaksa logo gambar mempertahankan bentuk aslinya (tidak gepeng) */
+.btn-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
   display: block;
-  pointer-events: none; /* Mencegah kursor macet saat menyentuh gambar logo */
 }
 
-/* Efek Hover Sentuhan */
-.social-btn-item:hover {
-  background-color: #ffffff !important;
-  transform: translateY(-3px) scale(1.1);
+.btn-icon:hover,
+.btn-icon:active {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.15);
 }
 
-#music-control {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  background: #ff09ea;
-  border: 2px solid #333;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+/* TAB HITAM / COKELAT GELAP TOGGLE HIDE/SHOW */
+.tab-black-toggle {
+  background-color: #230a00; /* Hitam kecokelatan pekat */
+  width: 100px;
+  height: 26px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.bg-blue-50 min-h-screen py-8 px-4 {
-  color: #000000;
+/* PANAH TOGGLE (Diubah dari Pink ke Krem Murni/Gold Soft) */
+.tab-black-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: #e0ac8d; /* Warna cokelat muda / emas lembut */
+  filter: drop-shadow(0 0 3px rgba(224, 172, 141, 0.5));
+  transition: transform 0.4s ease;
 }
 
-.text-center {
-  text-decoration-color: #e203ff !important;
+/* KONDISI SAAT HIDE */
+.bottom-nav-container.hidden {
+  transform: translate(-50%, calc(100% - 26px));
+}
+
+.bottom-nav-container.hidden .tab-black-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* ==========================================
+   FOOTER CREATOR & SOCIAL MEDIA
+   ========================================== */
+.footer-creator {
+  display: none;
+  background: #2a0b00; /* Warna latar gelap elegan */
+  color: #ffffff;
+  padding: 30px 20px 100px; /* Padding bawah 100px agar tidak tertutup nav melayang */
+  text-align: center;
+  border-top: 1px solid rgba(190, 130, 89, 0.3);
+}
+
+.creator-container {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.copyright-text {
+  font-size: 0.75rem;
+  color: #cccccc;
+  letter-spacing: 0.5px;
+}
+
+.copyright-text span {
+  color: #be8259;
+  font-weight: 600;
+}
+
+/* MEDIA SOSIAL WRAPPER */
+.social-media-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.social-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* WARNA HOVER BRANDING */
+.social-btn.instagram:hover {
+  background: #e1306c;
+  transform: translateY(-3px);
+}
+
+.social-btn.facebook:hover {
+  background: #1877f2;
+  transform: translateY(-3px);
+}
+
+.social-btn.tiktok:hover {
+  background: #000000;
+  border-color: #ff0050;
+  transform: translateY(-3px);
+}
+
+.social-btn.gmail:hover {
+  background: #ea4335;
+  transform: translateY(-3px);
+}
+
+.social-btn.whatsapp:hover {
+  background: #25d366;
+  transform: translateY(-3px);
+}
+
+/* Class untuk memunculkan footer kembali */
+.footer-creator.active {
+  display: block; /* Menampilkan footer setelah undangan dibuka */
 }
