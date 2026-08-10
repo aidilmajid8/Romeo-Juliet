@@ -2,602 +2,594 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-1.0" />
     <title>Romeo & Juliet</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Google Fonts untuk font tulisan yang elegan -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Edu+VIC+WA+NT+Hand+Pre:wght@400..700&family=Oswald:wght@200..700&family=Pacifico&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=Montserrat:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Molle:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body>
-    <!-- Bagian 1: Home / Cover -->
-    <section class="home-cover" id="home">
-      <div class="cover-content">
-        <p class="invitation-text">Invitation</p>
-        <p class="greeting">
-          Dengan hormat, kami mengundang Anda<br />untuk hadir dalam pernikahan
-          kami
-        </p>
-        <h1 class="couple-names">Romeo</h1>
-        <h1 class="simbol">&</h1>
-        <h1 class="couple-names1">Juliet</h1>
-        <h1 class="guest-name" id="nama-tamu">Nama Tamu</h1>
 
-        <!-- Tombol untuk membuka undangan -->
-        <button class="btn-open" onclick="openInvitation()">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-          </svg>
-          Open Invitation
+  <!-- COVER / HALAMAN BUKA UNDANGAN -->
+  <body>
+    <section id="cover" class="cover-container">
+      <div class="cover-content">
+        <p class="sub-title">The Wedding Of</p>
+        <h1 class="nama-mempelai">Romeo & Juliet</h1>
+        <p class="tamu-label">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <div class="tamu-nama" id="nama-tamu-cover">Nama Tamu Undanga</div>
+
+        <button id="btn-buka" class="btn-buka">
+          <span>✉</span> Buka Undangan
         </button>
       </div>
     </section>
 
-    <!-- BAGIAN BARU: Layar Transisi Foto Mempelai -->
-    <div class="photo-transition-screen" id="loading-photo">
-      <div class="photo-wrapper">
-        <img
-          src="images/foto1.jpg"
-          alt="Foto Mempelai"
-          class="mempelai-transition-img"
-        />
-      </div>
-    </div>
-
-    <!-- Bagian 2: Halaman Utama -->
-    <section class="Foto-decor" id="decoration">
-      <div class="decor">
-        <div class="decor-top-container">
+    <!-- KONTEN UTAMA UNDANGAN -->
+    <main id="konten-utama" class="konten-utama">
+      <!-- SECTION PEMBUKA FOTO & AYAT -->
+      <section class="section-hero-foto">
+        <!-- FRAME FOTO MEMPELAI -->
+        <div class="foto-wrapper">
+          <span class="angka-tanggal">31</span>
           <img
-            src="images/decor_kiriatas.png"
-            alt="Dekorasi Atas"
-            class="decor-top_left"
-          />
-          <img
-            src="images/decor_kananatas.png"
-            alt="Dekorasi Atas"
-            class="decor-top_right"
+            src="images/foto1.jpg"
+            alt="Romeo & Juliet"
+            class="foto-pembuka"
           />
         </div>
-        <img
-          src="images/decor-atas.png"
-          alt="Dekorasi Atas"
-          class="decor-top"
-        />
 
-        <div class="flower-decor-container">
-          <img src="images/foto1.jpg" alt="Foto" class="flower-decor" />
-
-          <div class="tgl-overlay-box">
-            <img
-              src="images/Font-tgl.png"
-              alt="Dekorasi Tanggal"
-              class="Font-tgl"
-            />
-          </div>
+        <div class="hero-text-card">
+          <h2 class="judul-mempelai">Romeo & Juliet</h2>
+          <blockquote class="tek-ayat">
+            "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
+            untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa
+            tenteram."
+          </blockquote>
+          <span class="sumber-ayat">QS. Ar-Rum: 21</span>
+        </div>
+      </section>
+      <!-- SECTION INFORMASI MEMPELAI -->
+      <section class="section-mempelai" id="mempelai">
+        <div class="mempelai-header">
+          <p class="salam-pembuka">Assalamu’alaikum Wr. Wb.</p>
+          <p class="teks-pengantar">
+            Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i
+            untuk hadir pada acara pernikahan kami:
+          </p>
         </div>
 
-        <img
-          src="images/decor-bawah.png"
-          alt="Dekorasi Bawah"
-          class="decor-bottom"
-        />
-        <div class="teks1">
-          <p class="opening-quote1">"Dan di antara tanda-tanda kekuasaan-Nya</p>
-          <p class="opening-quote2">ialah Dia menciptakan untukmu pasangan</p>
-          <p class="opening-quote3">hidup dari jenismu sendiri, supaya kamu</p>
-          <p class="opening-quote4">merasa tenteram."</p>
-          <p class="opening-quote5">QS. Ar-Rum: 21</p>
-        </div>
-      </div>
-      <audio id="background-music" loop>
-        <source src="music/musik-pernikahan.mp3" type="audio/mpeg" />
-        Browser kamu tidak mendukung pemutar audio.
-      </audio>
-    </section>
-
-    <section class="main-wedding-page" id="main-page">
-      <div class="main-container">
-        <div class="pembatas">
-          <img
-            src="images/Batas-decor.png"
-            alt="Dekorasi Love"
-            class="batas-center-decor"
-          />
-        </div>
-        <div class="opening-quote" id="opening-quote">
-          <p class="quote1">Dengan memohon rahmat dan ridho Allah</p>
-          <p class="quote2">SWT, kami bermaksud menyelenggarakan</p>
-          <p class="quote3">pernikahan:</p>
-        </div>
-
-        <!-- Tempat Profil Pengantin -->
-        <div class="mempelai-box">
-          <img
-            src="images/Decor-Love.png"
-            alt="Dekorasi Love"
-            class="love-center-decor"
-          />
-
-          <!-- KARTU PROFIL MEMPELAI PRIA -->
+        <!-- CONTAINER DUA MEMPELAI -->
+        <div class="mempelai-container">
+          <!-- MEMPELAI PRIA -->
           <div class="mempelai-card">
-            <img
-              src="images/Laki-Laki.jpg"
-              alt="Foto Pengantin 1"
-              class="mempelai-img"
-            />
-            <div class="mempelai-info">
-              <h3 class="mempelai-nama">Romeo</h3>
-              <p class="mempelai-ayah">Putra dari Bapak Monty &amp; Ibu Rina</p>
+            <div class="foto-profile-wrapper">
+              <img
+                src="images/mempelai-laki-laki.jpg"
+                alt="Foto Romeo"
+                class="foto-profile"
+              />
             </div>
+            <h3 class="nama-mempelai-lengkap">Romeo Montague, S.T.</h3>
+            <p class="orang-tua">
+              Putra Pertama dari<br />
+              Bapak Montague & Ibu Montague
+            </p>
           </div>
 
-          <!-- KARTU PROFIL MEMPELAI WANITA -->
+          <!-- SIMBOL DAN (&) -->
+          <div class="simbol-dan">&</div>
+
+          <!-- MEMPELAI WANITA -->
           <div class="mempelai-card">
-            <img
-              src="images/wanita.jpg"
-              alt="Foto Pengantin 2"
-              class="mempelai1-img"
-            />
-            <div class="mempelai-info">
-              <h3 class="mempelai-nama">Juliet</h3>
-              <p class="mempelai-ayah">Putri dari Bapak Ahmad &amp; Ibu Siti</p>
+            <div class="foto-profile-wrapper">
+              <img
+                src="images/mempelai-Perempuan.jpg"
+                alt="Foto Juliet"
+                class="foto-profile"
+              />
             </div>
+            <h3 class="nama-mempelai-lengkap">Juliet Capulet, S.Ked.</h3>
+            <p class="orang-tua">
+              Putri Kedua dari<br />
+              Bapak Capulet & Ibu Capulet
+            </p>
           </div>
         </div>
-
-        <div class="decoration">
-          <img
-            src="images/Batas-decor1.png"
-            alt="Dekorasi Love"
-            class="batasan"
-          />
-        </div>
-
-        <div class="text0">
-          <p class="text1">MENUJU HARI BAHAGIA</p>
-          <p class="text2">Hitung Mundur</p>
-          <div class="countdown-container">
-            <div class="countdown-card">
-              <span id="days">00</span>
+      </section>
+      <!-- SECTION ACARA & COUNTDOWN -->
+      <section class="section-acara" id="acara">
+        <!-- COUNTDOWN TIMER -->
+        <div class="countdown-card">
+          <h2 class="judul-section">Menuju Hari Bahagia</h2>
+          <div id="countdown" class="countdown-container">
+            <div class="countdown-box">
+              <span id="hari">00</span>
               <p>Hari</p>
             </div>
-            <div class="countdown-card">
-              <span id="hours">00</span>
+            <div class="countdown-box">
+              <span id="jam">00</span>
               <p>Jam</p>
             </div>
-            <div class="countdown-card">
-              <span id="minutes">00</span>
+            <div class="countdown-box">
+              <span id="menit">00</span>
               <p>Menit</p>
             </div>
-            <div class="countdown-card">
-              <span id="seconds">00</span>
+            <div class="countdown-box">
+              <span id="detik">00</span>
               <p>Detik</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="weddings" id="program">
-      <div>
-        <img
-          src="images/Batas-decor2.png"
-          alt="Dekorasi Love"
-          class="batasan"
-        />
-      </div>
-      <div class="Judul">
-        <p class="text3">Waktu & Tempat</p>
-        <h1 class="text4">Rangkaian Acara</h1>
-      </div>
-      <div class="decorationn">
-        <div class="Program-item">
-          <h1 class="icon">💍</h1>
-          <h1 class="text-judul">Akad Nikah</h1>
-          <p class="time">08:00 WIB</p>
-          <p class="hari">Sabtu, 31 Oktober 2026</p>
-        </div>
-        <div class="Program-item">
-          <h1 class="icon">💐</h1>
-          <h1 class="text-judul">Resepsi</h1>
-          <p class="time">11:00 WIB - Selesai</p>
-          <p class="hari">Sabtu, 31 Oktober 2026</p>
-        </div>
-        <div class="Program-item">
-          <h1 class="icon">🧭</h1>
-          <h1 class="text-judul">Lokasi</h1>
-          <p class="time">JL. URIP SUMOHARJO</p>
-          <p class="hari">Makassar</p>
-          <button
-            class="program-location"
-            id="location-toggle"
-            onclick="bukaPeta()"
+        <!-- DETAIL ACARA AKAD NIKAH -->
+        <div class="acara-card">
+          <h3 class="nama-acara">Akad Nikah</h3>
+          <div class="info-waktu">
+            <p class="tanggal">Minggu, 31 Oktober 2026</p>
+            <p class="jam">08.00 - 10.00 WITA</p>
+          </div>
+          <div class="info-lokasi">
+            <p class="nama-tempat">Gedung Pertemuan Utama</p>
+            <p class="alamat-tempat">
+              Jl. AP Pettarani No. 123, Makassar, Sulawesi Selatan
+            </p>
+          </div>
+          <a
+            href="https://maps.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-maps"
           >
-            ⚲ Buka Google Maps
-          </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+              />
+            </svg>
+            <span>Buka Google Maps</span>
+          </a>
         </div>
-      </div>
-    </section>
 
-    <section class="story" id="story1">
-      <div class="foto-item">
-        <img
-          src="images/Batas-decor2.png"
-          alt="Dekorasi Love"
-          class="batasan"
-        />
-      </div>
-      <div class="Judul">
-        <p class="text5">PERJALANAN KAMI</p>
-        <h1 class="text6">Love Story</h1>
-      </div>
-      <div>
-        <img src="images/foto2.jpg" alt="foto-story" class="story-foto" />
-      </div>
-
-      <div class="kisah">
-        <img src="images/Tahun1.png" alt="text-tahun" class="image-text" />
-        <div class="text-kisah">
-          <p>Berkenalan saat di taman nasional.</p>
-        </div>
-        <img src="images/Garis.jpg" alt="garis-pembatas" class="garisan" />
-      </div>
-
-      <div class="kisah">
-        <img src="images/Tahun2.png" alt="text-tahun" class="image-text1" />
-        <div class="text-kisah1">
-          <p>Kami mengikat niat bersama kedua keluarga</p>
-        </div>
-        <img src="images/Garis.jpg" alt="garis-pembatas" class="garisan" />
-      </div>
-
-      <div class="kisah">
-        <img src="images/Tahun3.png" alt="text-tahun" class="image-text2" />
-        <div class="text-kisah2">
-          <p>Menuju hari bahagia kami.</p>
-        </div>
-        <img src="images/Garis.jpg" alt="garis-pembatas" class="garisan" />
-      </div>
-    </section>
-
-    <section class="moment" id="our-moment">
-      <div>
-        <img
-          src="images/Batas-decor2.png"
-          alt="Dekorasi Love"
-          class="batasann"
-        />
-      </div>
-      <div class="Judul">
-        <p class="text5">GALERI</p>
-        <h1 class="text6">Our Moment</h1>
-      </div>
-      <div class="gallery-carousel-container">
-        <div class="gallery-viewport">
-          <div class="gallery-slider">
-            <div class="slide-item active">
-              <img src="images/foto-pose1.jpg" alt="Foto 1" />
-            </div>
-            <div class="slide-item">
-              <img src="images/foto-pose2.jpg" alt="Foto 2" />
-            </div>
-            <div class="slide-item">
-              <img src="images/foto-pose3.jpg" alt="Foto 3" />
-            </div>
-            <div class="slide-item">
-              <img src="images/foto-pose4.jpg" alt="Foto 4" />
-            </div>
-            <div class="slide-item">
-              <img src="images/foto-pose5.jpg" alt="Foto 5" />
-            </div>
+        <!-- DETAIL ACARA RESEPSI -->
+        <div class="acara-card">
+          <h3 class="nama-acara">Resepsi</h3>
+          <div class="info-waktu">
+            <p class="tanggal">Minggu, 31 Oktober 2026</p>
+            <p class="jam">11.00 - Selesai</p>
           </div>
-          <div class="gallery-controls-bottom">
-            <button class="carousel-btn back-btn" onclick="geserFoto(-1)">
-              ↩
-            </button>
-            <button class="carousel-btn next-btn" onclick="geserFoto(1)">
-              ↪
-            </button>
+          <div class="info-lokasi">
+            <p class="nama-tempat">Gedung Pertemuan Utama</p>
+            <p class="alamat-tempat">
+              Jl. AP Pettarani No. 123, Makassar, Sulawesi Selatan
+            </p>
+          </div>
+          <a
+            href="https://maps.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-maps"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+              />
+            </svg>
+            <span>Buka Google Maps</span>
+          </a>
+        </div>
+      </section>
+      <!-- SECTION GALERI BINGKAI TUNGGAL -->
+      <section class="section-galeri" id="galeri">
+        <div class="galeri-card">
+          <h2 class="judul-section">Galeri Bahagia</h2>
+          <p class="sub-galeri">Momen Indah Perjalanan Kami</p>
+
+          <!-- BINGKAI FOTO UTAMA -->
+          <div class="bingkai-foto">
+            <img
+              src="images/galeri1.jpg"
+              alt="Galeri 1"
+              id="foto-galeri"
+              class="foto-slide active"
+            />
           </div>
         </div>
-        <div class="Judul">
-          <p class="text7">MOMEN BAHAGIA</p>
-          <h1 class="text8">Menangkap Detik, Mengabadikan Kita.</h1>
-        </div>
-      </div>
-    </section>
+      </section>
+      <!-- SECTION RSVP & BUKU TAMU -->
+      <section class="section-rsvp" id="rsvp">
+        <div class="rsvp-card">
+          <h2 class="judul-section">Konfirmasi Kehadiran</h2>
+          <p class="sub-rsvp">
+            Berikan doa & ucapan terbaik untuk kedua mempelai
+          </p>
 
-    <section class="ucapandoa" id="rsvp">
-      <div>
-        <img
-          src="images/Batas-decor2.png"
-          alt="Dekorasi Love"
-          class="batasann"
-        />
-      </div>
-      <div class="Judul">
-        <p class="text5">RSVP</p>
-        <h1 class="text6">Ucapan & Doa</h1>
-      </div>
-      <div class="rsvp-bg-box">
-        <div class="guestbook-container">
-          <form id="guestbook-form" onsubmit="kirimUcapan(event)">
-            <div class="input-group">
-              <select id="guest-status-input" required>
-                <option value="" disabled selected>Konfirmasi Kehadiran</option>
-                <option value="Hadir">Saya akan datang (Hadir)</option>
-                <option value="Tidak Hadir">Maaf, Tidak dapat hadir</option>
-              </select>
-            </div>
-            <div class="input-group">
+          <!-- FORMULIR INPUT UCAPAN -->
+          <form id="form-rsvp" class="form-rsvp">
+            <div class="form-group">
+              <label for="nama-tamu">Nama Lengkap</label>
               <input
                 type="text"
-                id="guest-name-input"
-                placeholder="Nama Anda"
+                id="nama-tamu"
+                placeholder="Masukkan nama Anda"
                 required
               />
             </div>
-            <div class="input-group">
+
+            <div class="form-group">
+              <label for="status-kehadiran">Konfirmasi Kehadiran</label>
+              <select id="status-kehadiran" required>
+                <option value="" disabled selected>
+                  -- Pilih Kehadiran --
+                </option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+                <option value="Ragu-ragu">Masih Ragu-ragu</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="pesan-ucapan">Pesan / Doa Ucapan</label>
               <textarea
-                id="guest-message-input"
-                rows="4"
-                placeholder="Tulis ucapan &amp; doa restu Anda di sini..."
+                id="pesan-ucapan"
+                rows="3"
+                placeholder="Tuliskan ucapan & doa..."
                 required
               ></textarea>
             </div>
-            <div class="input-group">
-              <button type="submit" class="btn-send-wish">Kirim Ucapan</button>
-            </div>
+
+            <button type="submit" class="btn-kirim">Kirim Ucapan</button>
           </form>
 
-          <div class="wishes-display-box" id="wishes-box"></div>
-        </div>
-        <div
-          class="wishes-display-container"
-          id="wishes-display-container"
-        ></div>
-      </div>
-    </section>
-
-    <section class="giftpage" id="gift">
-      <div>
-        <img
-          src="images/Batas-decor2.png"
-          alt="Dekorasi Love"
-          class="batasann"
-        />
-      </div>
-      <div class="Judul">
-        <p class="text5">TANPA MENGURANGI RASA HORMAT</p>
-        <h1 class="text6">Amplop Digital</h1>
-        <p class="text9">
-          Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan<br />tanda
-          kasih kepada kami, dapat melalui:
-        </p>
-      </div>
-      <div class="gift-container">
-        <div class="gift-single-box">
-          <!-- Baris 1: BANK BCA -->
-          <div class="gift-row-item">
-            <div class="gift-text-side">
-              <h3 class="bank-title">BANK BCA</h3>
-              <p class="account-num" id="rek-bca">1234567890</p>
-              <p class="account-owner">a.n. Romeo / Juliet</p>
+          <!-- DAFTAR PESAN DARI TAMU -->
+          <div class="daftar-pesan-container">
+  <h3 class="judul-daftar-pesan">
+    Ucapan & Doa (<span id="total-pesan">0</span>)
+  </h3>
+  
+  <div id="list-pesan" class="list-pesan">
+  </div>
+</div>
             </div>
-            <button
-              class="btn-copy-inline"
-              onclick="salinNomor('rek-bca', this)"
-            >
-              📋 Salin
-            </button>
-          </div>
-
-          <!-- Baris 2: BANK BRI -->
-          <div class="gift-row-item">
-            <div class="gift-text-side">
-              <h3 class="bank-title">BANK BRI</h3>
-              <p class="account-num" id="rek-bri">9876543210123</p>
-              <p class="account-owner">a.n. Romeo / Juliet</p>
-            </div>
-            <button
-              class="btn-copy-inline"
-              onclick="salinNomor('rek-bri', this)"
-            >
-              📋 Salin
-            </button>
-          </div>
-
-          <!-- Baris 3: GOPAY -->
-          <div class="gift-row-item">
-            <div class="gift-text-side">
-              <h3 class="bank-title">GOPAY</h3>
-              <p class="account-num" id="E-gopay">081234567890</p>
-              <p class="account-owner">a.n. Romeo / Juliet</p>
-            </div>
-            <button
-              class="btn-copy-inline"
-              onclick="salinNomor('E-gopay', this)"
-            >
-              📋 Salin
-            </button>
-          </div>
-
-          <!-- Baris 4: DANA -->
-          <div class="gift-row-item">
-            <div class="gift-text-side">
-              <h3 class="bank-title">DANA</h3>
-              <p class="account-num" id="E-dana">081234567890</p>
-              <p class="account-owner">a.n. Romeo / Juliet</p>
-            </div>
-            <button
-              class="btn-copy-inline"
-              onclick="salinNomor('E-dana', this)"
-            >
-              📋 Salin
-            </button>
           </div>
         </div>
+      </section>
+      <!-- SECTION AMPLOP DIGITAL -->
+      <section class="section-amplop" id="amplop">
+        <div class="amplop-card">
+          <h2 class="judul-section">Amplop Digital</h2>
+          <p class="sub-amplop">
+            Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin
+            memberi hadiah, Anda dapat menggunakan amplop digital di bawah ini:
+          </p>
 
-        <div class="gift-address-card">
-          <div class="gift-bank-info">
-            <h3 class="bank-name">KIRIM KADO (ALAMAT)</h3>
-            <p class="account-number" id="alamat-kado">
-              JL. URIP SUMOHARJO NO. 12, MAKASSAR
-            </p>
-            <p class="account-name">Penerima: Romeo (08123456789)</p>
+          <!-- KARTU REKENING 1 (BCA) -->
+          <div class="rekening-card">
+            <div class="bank-header">
+              <span class="nama-bank">BANK BCA</span>
+            </div>
+            <div class="rekening-body">
+              <p class="nomor-rekening" id="rek-bca">1234567890</p>
+              <p class="atas-nama">a.n. Romeo Montague</p>
+              <button
+                class="btn-salin"
+                onclick="salinRekening('rek-bca', this)"
+              >
+                <span>Salin Rekening</span>
+              </button>
+            </div>
           </div>
-          <button
-            class="btn-copy-gift"
-            onclick="salinNomor('alamat-kado', this)"
+
+          <!-- KARTU REKENING 2 (E-WALLET / MANDIRI / DLL) -->
+          <div class="rekening-card">
+            <div class="bank-header">
+              <span class="nama-bank">DANA / E-WALLET</span>
+            </div>
+            <div class="rekening-body">
+              <p class="nomor-rekening" id="rek-dana">081234567890</p>
+              <p class="atas-nama">a.n. Juliet Capulet</p>
+              <button
+                class="btn-salin"
+                onclick="salinRekening('rek-dana', this)"
+              >
+                <span>Salin Nomor</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION PENUTUP UNDANGAN -->
+      <section class="section-penutup">
+        <div class="penutup-card">
+          <p class="teks-penutup">
+            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+            Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada
+            kami.
+          </p>
+          <p class="salam-penutup">Wassalamu’alaikum Wr. Wb.</p>
+
+          <div class="mempelai-penutup">
+            <p class="salam-hormat">Kami yang berbahagia,</p>
+            <h2 class="nama-penutup">Romeo & Juliet</h2>
+          </div>
+        </div>
+      </section>
+      <!-- AUDIO ELEMENT -->
+      <audio id="bg-music" loop>
+        <source src="music/musik-pernikahan.mp3" type="audio/mpeg" />
+        Browser Anda tidak mendukung elemen audio.
+      </audio>
+
+      <!-- TOMBOL MUSIK POJOK KANAN ATAS -->
+      <button
+        id="btn-musik"
+        class="btn-musik-floating"
+        aria-label="Toggle Music"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-vinyl"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M16 3.937a9 9 0 1 0 5 8.063" />
+          <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+          <path d="M19 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+          <path d="M20 4l-3.5 10l-2.5 2" />
+        </svg>
+      </button>
+
+      <!-- NAVIGASI MELAYANG BAGIAN BAWAH -->
+      <div id="bottom-nav-container" class="bottom-nav-container">
+        <!-- TAB HITAM PENGAPIT HIDE/SHOW DI BAWAH -->
+        <div class="tab-black-toggle" onclick="toggleNavMenu()">
+          <svg
+            id="icon-arrow"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
           >
-            📍 Salin Alamat
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+          </svg>
+        </div>
+        <!-- PANEL UTAMA PINK NEON (AREA TOMBOL IKON BULAT) -->
+        <div class="nav-content-pink">
+          <!-- Home -->
+          <button
+            onclick="scrollToSection('cover')"
+            class="btn-icon"
+            title="Home"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+          </button>
+
+          <!-- Mempelai -->
+          <button
+            onclick="scrollToSection('mempelai')"
+            class="btn-icon"
+            title="Mempelai"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+          </button>
+
+          <!-- Acara -->
+          <button
+            onclick="scrollToSection('acara')"
+            class="btn-icon"
+            title="Acara"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"
+              />
+            </svg>
+          </button>
+
+          <!-- Galeri -->
+          <button
+            onclick="scrollToSection('galeri')"
+            class="btn-icon"
+            title="Galeri"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+              />
+            </svg>
+          </button>
+
+          <!-- Ucapan -->
+          <button
+            onclick="scrollToSection('rsvp')"
+            class="btn-icon"
+            title="Ucapan"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"
+              />
+            </svg>
+          </button>
+
+          <!-- Hadiah -->
+          <button
+            onclick="scrollToSection('amplop')"
+            class="btn-icon"
+            title="Hadiah"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"
+              />
+            </svg>
+          </button>
+
+          <!-- Auto Scroll / Pause -->
+          <button
+            id="btn-toggle-autoscroll"
+            onclick="toggleAutoScroll()"
+            class="btn-icon"
+            title="Play/Pause"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
           </button>
         </div>
+      </div>
+    </main>
 
-        <div class="decor-bottom-container">
-          <img
-            src="images/decor_kiriatas.png"
-            alt="Dekorasi Bawah"
-            class="decor-top_bottom1"
-          />
-          <img
-            src="images/decor_kananatas.png"
-            alt="Dekorasi Bawah"
-            class="decor-top_bottom"
-          />
+    <!-- Menghubungkan File JavaScript -->
+    <script src="script.js?v=999"></script>
+    <!-- FOOTER CREATOR & SOCIAL MEDIA -->
+    <footer class="footer-creator">
+      <div class="creator-container">
+        <p class="copyright-text">
+          &copy; 2026 Designed & Created by <span>Melomaniac</span>
+        </p>
+
+        <!-- TOMBOL MEDIA SOSIAL PEMBUAT -->
+        <div class="social-media-wrapper">
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/aidil_majid_hamid/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn instagram"
+            title="Instagram"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a
+            href="https://web.facebook.com/Aidil384"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn facebook"
+            title="Facebook"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              />
+            </svg>
+          </a>
+
+          <!-- TikTok -->
+          <a
+            href="https://www.tiktok.com/@aidilfitrimajid"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn tiktok"
+            title="TikTok"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.33 1.52-1.33 2.52.01 1.01.55 1.96 1.39 2.5.88.58 2.05.62 2.97.12.87-.46 1.42-1.37 1.47-2.35.05-3.37.01-6.74.01-10.11z"
+              />
+            </svg>
+          </a>
+
+          <!-- Gmail -->
+          <a
+            href="mailto:aidilmajid8@gmail.com"
+            class="social-btn gmail"
+            title="Gmail"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.573l8.073-6.08C21.691 2.279 24 3.434 24 5.457z"
+              />
+            </svg>
+          </a>
+
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/6281234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn whatsapp"
+            title="WhatsApp"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
+              />
+            </svg>
+          </a>
         </div>
       </div>
-      <button id="music-control" onclick="toggleMusic()">🎵</button>
-    </section>
-
-    <section class="penutup" id="tutup-page">
-      <div class="closing-photo-container">
-        <img
-          src="images/foto-pose6.jpg"
-          alt="Foto Penutup"
-          class="closing-img"
-        />
-        <div class="text10">
-          <p class="text0">
-            SAMPAI JUMPA DI HARI BAHAGIA KAMI<br />TERIMA KASIH
-          </p>
-          <h1 class="mempelaii">Romeo & Juliet</h1>
-        </div>
-
-        <footer class="footer-copyright">
-          <div class="creator-credits">
-            <span class="creator-text">Created by Alunbowed</span>
-            <div class="social-icons-group">
-              <button
-                class="social-btn-item"
-                onclick="salinNomorHp('082191532695', this)"
-                title="Salin Nomor HP"
-              >
-                <img src="images/icon-wa.png" alt="WhatsApp" />
-              </button>
-              <a
-                href="https://www.instagram.com/aidil_majid_hamid/"
-                target="_blank"
-                class="social-btn-item"
-                title="Instagram"
-              >
-                <img src="images/icon-instagram.png" alt="Instagram" />
-              </a>
-              <a
-                href="https://t.me/AidilMJ"
-                target="_blank"
-                class="social-btn-item"
-                title="Telegram"
-              >
-                <img src="images/icon-telegram.png" alt="Telegram" />
-              </a>
-              <a
-                href="https://www.tiktok.com/@aidilfitrimajid?is"
-                target="_blank"
-                class="social-btn-item"
-                title="TikTok"
-              >
-                <img src="images/icon-tiktok.png" alt="TikTok" />
-              </a>
-            </div>
-          </div>
-          <p>&copy; 2026 Melomaniac. All Rights Reserved.</p>
-        </footer>
-      </div>
-    </section>
-
-    <nav class="floating-navbar" id="main-navbar">
-      <button
-        class="nav-toggle-btn"
-        id="navbar-toggle"
-        onclick="toggleNavbarView()"
-      >
-        <span>⟩</span>
-      </button>
-      <button class="nav-item" onclick="scrollToSection('home')">
-        <span>🏠︎</span>
-        <p>Home</p>
-      </button>
-      <button class="nav-item" onclick="scrollToSection('main-page')">
-        <span></span>
-        <p>MEMPELAI</p>
-      </button>
-      <button class="nav-item" onclick="scrollToSection('program')">
-        <span></span>
-        <p>ACARA</p>
-      </button>
-      <button class="nav-item" onclick="scrollToSection('story1')">
-        <span></span>
-        <p>KISAH</p>
-      </button>
-      <button class="nav-item" onclick="scrollToSection('our-moment')">
-        <span></span>
-        <p>GALERI</p>
-      </button>
-      <button class="nav-item" onclick="scrollToSection('rsvp')">
-        <span></span>
-        <p>UCAPAN</p>
-      </button>
-      <button class="nav-item" onclick="scrollToSection('gift')">
-        <span></span>
-        <p>HADIAH</p>
-      </button>
-      <button
-        class="nav-item"
-        id="btn-scroll-toggle"
-        onclick="toggleAutoScroll()"
-      >
-        <span id="scroll-icon">⏸</span>
-        <p id="scroll-text">STOP</p>
-      </button>
-    </nav>
-
-    <!-- Skrip untuk Mengambil Parameter Nama Tamu dari URL -->
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const namaTamu = urlParams.get("to");
-      const elemenTamu = document.getElementById("nama-tamu");
-
-      if (namaTamu && elemenTamu) {
-        elemenTamu.innerText = decodeURIComponent(namaTamu);
-      } else if (elemenTamu) {
-        elemenTamu.innerText = "Tamu Undangan";
-      }
-    </script>
-
-    <!-- Tempat file JavaScript Utama (script.js) -->
-    <script src="script.js"></script>
+    </footer>
   </body>
 </html>
