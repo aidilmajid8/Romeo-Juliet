@@ -1,760 +1,363 @@
-// ➕ Buat variabel kosong di luar fungsi untuk menyimpan mesin timer auto-scroll
-let autoScrollTimer;
+// ==========================================
+// 1. VARIABLE GLOBAL
+// ==========================================
+let autoScrollID = null;
+let isAutoScrolling = false;
+const scrollSpeed = 0.8; //
 
-// 🛠️ FUNGSI BARU: Mesin penggerak layar otomatis ke bawah perlahan
-// Variabel status untuk memantau apakah auto scroll sedang aktif atau mati
-let isScrolling = false;
+// ==========================================
+// 2. INISIALISASI SAAT DOM SIAP
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  // Ambil nama tamu dari URL parameter (?to=NamaTamu)
+  const urlParams = new URLSearchParams(window.location.search);
+  const namaTamu = urlParams.get("to");
 
-// Fungsi penggerak layar otomatis ke bawah perlahan
-function startAutoScroll() {
-  clearInterval(autoScrollTimer);
-  isScrolling = true; // Setel status aktif
-
-  autoScrollTimer = setInterval(function () {
-    window.scrollBy(0, 1);
-
-    // Cek jika gulungan layar sudah mentok sampai paling dasar halaman
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      stopAutoScroll(); // Otomatis matikan total jika sudah mentok bawah
+  if (namaTamu) {
+    const elemenNamaTamu = document.getElementById("nama-tamu-cover");
+    if (elemenNamaTamu) {
+      elemenNamaTamu.innerText = namaTamu;
     }
-  }, 30);
-}
+  }
 
-// 🛠️ FUNGSI BARU: Untuk mematikan mesin gulung layar dan meriset tombol
-function stopAutoScroll() {
-  clearInterval(autoScrollTimer);
-  isScrolling = false; // Setel status mati
+  // Bind event tombol Buka Undangan
+  const btnBuka =
+    document.getElementById("btn-buka") || document.querySelector(".btn-buka");
+  if (btnBuka) {
+    btnBuka.addEventListener("click", bukaUndangan);
+  }
+});
 
-  const scrollIcon = document.getElementById("scroll-icon");
-  const scrollText = document.getElementById("scroll-text");
+// ==========================================
+// 3. FUNGSI MUSIK
+// ==========================================
+const bgMusic = document.getElementById("bg-music");
+const btnMusik = document.getElementById("btn-musik");
 
-  if (scrollIcon) scrollIcon.innerText = "▶";
-  if (scrollText) scrollText.innerText = "Play";
-}
-
-// 🛠️ FUNGSI BARU: Pemicu tombol Jeda / Jalankan kembali dari Navbar
-function toggleAutoScroll() {
-  const scrollIcon = document.getElementById("scroll-icon");
-  const scrollText = document.getElementById("scroll-text");
-
-  if (isScrolling) {
-    // Jika sedang jalan -> Matikan
-    stopAutoScroll();
-  } else {
-    // Jika sedang mati -> Jalankan lagi
-    startAutoScroll();
-    if (scrollIcon) scrollIcon.innerText = "⏸";
-    if (scrollText) scrollText.innerText = "Stop";
+function playMusic() {
+  if (bgMusic) {
+    bgMusic
+      .play()
+      .catch((err) => console.log("Autoplay diblokir browser: ", err));
+    if (btnMusik) btnMusik.classList.add("play");
   }
 }
 
-// Fungsi tombol navigasi menu untuk loncat antar bab secara halus
-function scrollToSection(sectionId) {
-  // 1. Matikan dulu auto scroll sementara agar tidak bentrok saat layar meluncur
-  clearInterval(autoScrollTimer);
-
-  // 2. Luncurkan layar ke bab/section yang dituju secara halus
-  const target = document.getElementById(sectionId);
-  if (target) {
-    target.scrollIntoView({ behavior: "smooth" });
-  }
-
-  // 3. 🛠️ UTAMA: Jika yang diklik adalah 'home', nyalakan kembali auto scroll setelah layar sampai di atas
-  if (
-    (sectionId === "home",
-    "main-page",
-    "program",
-    "story1",
-    "our-moment",
-    "ucapandoa",
-    "gift")
-  ) {
-    // Tunggu 1 detik (1000ms) sampai animasi meluncur naik ke home selesai total
-    setTimeout(function () {
-      startAutoScroll(); // Jalankan kembali auto scroll secara otomatis
-
-      // Kembalikan ikon navbar menjadi simbol Stop (🛑)
-      const scrollIcon = document.getElementById("scroll-icon");
-      const scrollText = document.getElementById("scroll-text");
-      if (scrollIcon) scrollIcon.innerText = "🛑";
-      if (scrollText) scrollText.innerText = "Stop";
-    }, 1000);
-  } else {
-    // Jika yang diklik adalah menu lain (seperti Mempelai/Ayat), auto scroll tetap mati demi kenyamanan membaca
-    stopAutoScroll();
+function pauseMusic() {
+  if (bgMusic) {
+    bgMusic.pause();
+    if (btnMusik) btnMusik.classList.remove("play");
   }
 }
 
-// 🛠️ FUNGSI BARU: Menyembunyikan atau memunculkan navbar ke samping kiri layar
-function toggleNavbarView() {
-  const mainNavbar = document.getElementById("main-navbar");
-  const toggleIcon = document.querySelector(".nav-toggle-btn span");
-
-  if (mainNavbar) {
-    // Toggle class 'open-mode' untuk menarik keluar/menyembunyikan menu
-    mainNavbar.classList.toggle("open-mode");
-
-    // Ubah arah panah secara dinamis sesuai pergerakan menu
-    if (mainNavbar.classList.contains("open-mode")) {
-      if (toggleIcon) toggleIcon.innerText = "⟨"; // Menghadap kiri saat menu terbuka
+if (btnMusik) {
+  btnMusik.addEventListener("click", function () {
+    if (bgMusic.paused) {
+      playMusic();
     } else {
-      if (toggleIcon) toggleIcon.innerText = "⟩"; // Menghadap kanan saat menu tersembunyi
+      pauseMusic();
     }
+  });
+}
+
+// ==========================================
+// 4. FUNGSI BUKA UNDANGAN
+// ==========================================
+function bukaUndangan() {
+  // 1. Sembunyikan tombol "Buka Undangan"
+  const btnBuka =
+    document.getElementById("btn-buka") || document.querySelector(".btn-buka");
+  if (btnBuka) {
+    btnBuka.style.display = "none";
+  }
+
+  // 2. Aktifkan overflow body untuk scrolling
+  document.body.style.overflow = "auto";
+
+  // 3. Tampilkan Konten Utama
+  const kontenUtama = document.getElementById("konten-utama");
+  if (kontenUtama) {
+    kontenUtama.classList.add("tampil");
+
+    // Smooth scroll langsung menuju konten utama
+    kontenUtama.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
+  // 4. Tampilkan Footer Creator
+  const footerCreator = document.querySelector(".footer-creator");
+  if (footerCreator) {
+    footerCreator.classList.add("active");
+  }
+
+  // 5. Putar Musik
+  playMusic();
+
+  // 6. Jalankan Auto Scroll
+  setTimeout(() => {
+    startAutoScroll();
+  }, 1000);
+}
+
+// ==========================================
+// 5. AUTO SCROLL CONTROLLER (TAHAN SCROLL MANUAL)
+// ==========================================
+function startAutoScroll() {
+  if (isAutoScrolling) return;
+  isAutoScrolling = true;
+  updateAutoScrollIcon(true);
+
+  function renderStep() {
+    if (!isAutoScrolling) return;
+
+    // Berhenti hanya jika sudah di bagian paling bawah
+    const isBottom =
+      window.innerHeight + Math.ceil(window.scrollY) >=
+      document.body.offsetHeight - 5;
+    if (isBottom) {
+      stopAutoScroll();
+      return;
+    }
+
+    // Scroll bertahap di setiap frame
+    window.scrollBy(0, scrollSpeed);
+
+    // Minta frame animasi berikutnya dari browser
+    autoScrollID = requestAnimationFrame(renderStep);
+  }
+
+  autoScrollID = requestAnimationFrame(renderStep);
+}
+
+function stopAutoScroll() {
+  isAutoScrolling = false;
+  if (autoScrollID) {
+    cancelAnimationFrame(autoScrollID);
+    autoScrollID = null;
+  }
+  updateAutoScrollIcon(false);
+}
+
+function toggleAutoScroll() {
+  if (isAutoScrolling) {
+    stopAutoScroll();
+  } else {
+    startAutoScroll();
   }
 }
 
-// 🛠️ UTAMA: Atur tanggal target pernikahan Anda di bawah ini (Format: Bulan Tanggal, Tahun Jam:Menit:Detik)
-const targetWeddingDate = new Date("August 04, 2027 08:00:00").getTime();
+function updateAutoScrollIcon(isPlaying) {
+  const btnScroll = document.getElementById("btn-toggle-autoscroll");
+  if (!btnScroll) return;
 
-// Jalankan mesin hitung mundur setiap 1 detik (1000 milidetik)
-const countdownInterval = setInterval(function () {
-  // 1. Ambil waktu saat ini
-  const now = new Date().getTime();
+  if (isPlaying) {
+    btnScroll.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+    btnScroll.setAttribute("title", "Pause Auto Scroll");
+  } else {
+    btnScroll.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+    btnScroll.setAttribute("title", "Play Auto Scroll");
+  }
+}
 
-  // 2. Hitung jarak selisih antara tanggal target dengan waktu sekarang
-  const difference = targetWeddingDate - now;
+// ==========================================
+// 6. NAVIGASI SCROLL TO SECTION (TOMBOL BOTTOM NAV)
+// ==========================================
+function scrollToSection(sectionId) {
+  if (sectionId === "cover" || sectionId === "home") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
 
-  // 3. Rumus matematika untuk mengubah milidetik menjadi Hari, Jam, Menit, dan Detik
-  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-  );
-  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  } else {
+    console.warn("Elemen dengan ID '" + sectionId + "' tidak ditemukan!");
+  }
+}
 
-  // 4. Masukkan hasil angka ke dalam elemen HTML secara otomatis
-  document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-  document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-  document.getElementById("minutes").innerText =
-    minutes < 10 ? "0" + minutes : minutes;
-  document.getElementById("seconds").innerText =
-    seconds < 10 ? "0" + seconds : seconds;
+function toggleNavMenu() {
+  const bottomNav = document.getElementById("bottom-nav-container");
+  if (bottomNav) {
+    bottomNav.classList.toggle("hidden");
+  }
+}
 
-  // 5. Jika waktu hitung mundur sudah habis (Acara sudah lewat)
-  if (difference < 0) {
-    clearInterval(countdownInterval);
-    document.querySelector(".countdown-container").innerHTML =
-      "<p style='color:#f704e2; font-weight:bold; font-size:1.2rem;'>Acara Telah Berlangsung 🎉</p>";
+// ==========================================
+// 7. COUNTDOWN TIMER
+// ==========================================
+const tanggalAcara = new Date(2026, 9, 31, 8, 0, 0).getTime();
+
+const timer = setInterval(function () {
+  const sekarang = new Date().getTime();
+  const selisih = tanggalAcara - sekarang;
+
+  const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
+  const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
+  const detik = Math.floor((selisih % (1000 * 60)) / 1000);
+
+  const elHari = document.getElementById("hari");
+  const elJam = document.getElementById("jam");
+  const elMenit = document.getElementById("menit");
+  const elDetik = document.getElementById("detik");
+
+  if (elHari) elHari.innerText = hari < 10 ? "0" + hari : hari;
+  if (elJam) elJam.innerText = jam < 10 ? "0" + jam : jam;
+  if (elMenit) elMenit.innerText = menit < 10 ? "0" + menit : menit;
+  if (elDetik) elDetik.innerText = detik < 10 ? "0" + detik : detik;
+
+  if (selisih < 0) {
+    clearInterval(timer);
+    const elCountdown = document.getElementById("countdown");
+    if (elCountdown) {
+      elCountdown.innerHTML =
+        "<p style='font-weight: bold; color: #3b1101;'>Acara Telah Berlangsung</p>";
+    }
   }
 }, 1000);
 
-// 🛠️ FUNGSI BARU: Membuka Google Maps saat tombol lokasi diklik
-function bukaPeta() {
-  // Cari lokasi koordinat atau alamat gedung di Google Maps, lalu paste link-nya di dalam tanda kutip bawah ini
-  const urlGoogleMaps =
-    "https://www.google.com/maps/place/Makassar,+Kalukuang,+Kec.+Tallo,+Kota+Makassar,+Sulawesi+Selatan/@-5.1278075,119.4264802,17z/data=!3m1!4b1!4m6!3m5!1s0x2dbefd5caec5846d:0x3b09af8836f75821!8m2!3d-5.1278075!4d119.4290551!16s%2Fg%2F11ltj9bczx?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D";
+// ==========================================
+// 8. GALERI SLIDESHOW
+// ==========================================
+const daftarFoto = [
+  "images/foto-pose1.jpg",
+  "images/foto-pose2.jpg",
+  "images/foto-pose3.jpg",
+  "images/foto-pose4.jpg",
+  "images/foto-pose5.jpg",
+];
 
-  // Perintah untuk membuka link Google Maps di tab lembaran baru agar undangan tidak tertutup
-  window.open(urlGoogleMaps, "_blank");
+let indexFoto = 0;
+const elemenFoto = document.getElementById("foto-galeri");
+
+function gantiFoto() {
+  if (!elemenFoto) return;
+  elemenFoto.classList.remove("active");
+
+  setTimeout(() => {
+    indexFoto = (indexFoto + 1) % daftarFoto.length;
+    elemenFoto.src = daftarFoto[indexFoto];
+    elemenFoto.classList.add("active");
+  }, 200);
 }
 
-// 🛠️ UTAMA: Variabel penyimpan posisi nomor foto yang sedang aktif saat ini (Mulai dari 0)
-let indexFotoSekarang = 0;
-let galeriAutoPlayTimer;
-
-// ➕ 2. FUNGSI BARU: Mesin penggerak foto otomatis setiap 3 detik
-function jalankanGaleriOtomatis() {
-  // Bersihkan timer lama jika ada agar tidak terjadi bentrokan ganda
-  clearInterval(galeriAutoPlayTimer);
-
-  // Jalankan perintah geser ke kanan (+1) setiap 3000 milidetik (3 detik)
-  galeriAutoPlayTimer = setInterval(function () {
-    geserFoto(1);
-  }, 3000);
+if (elemenFoto) {
+  setInterval(gantiFoto, 3000);
 }
 
-// Sensor Pengintai Scroll Khusus untuk Rangkaian Acara di Halaman Weddings
-document.addEventListener("DOMContentLoaded", function () {
-  // 🛠️ PERBAIKAN UTAMA: Persempit target pencarian hanya untuk Program-item yang berada di dalam section weddings
-  const semuaProgramAcara = document.querySelectorAll(
-    ".weddings .Program-item",
-  );
+// ==========================================
+// 9. FORM RSVP & GOOGLE SHEETS INTEGRATION
+// ==========================================
+// PASTE URL WEB APP KAMU DI SINI:
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyltoHDVJhQPoM6L3jBkkpl4giIh3Ny7nLB2bYGxahcf365Czn5ufrSM1Q3QtmpoRXSbQ/exec";
 
-  if (semuaProgramAcara.length > 0) {
-    const programObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika kotak acara dilihat -> Munculkan!
-            entry.target.classList.add("muncul-up");
-          } else {
-            // Ketika kotak acara ditinggalkan -> Sembunyikan kembali!
-            entry.target.classList.remove("muncul-up");
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-      },
-    );
+const formRSVP = document.getElementById("form-rsvp");
+const listPesan = document.getElementById("list-pesan");
+const totalPesan = document.getElementById("total-pesan");
 
-    // Jalankan mesin pengintai hanya pada elemen Akad, Resepsi, dan Lokasi
-    semuaProgramAcara.forEach(function (program) {
-      programObserver.observe(program);
-    });
-  }
-});
+// Muat semua ucapan dari Google Sheets saat halaman pertama kali dibuka
+document.addEventListener("DOMContentLoaded", muatUcapan);
 
-// 🛠️ FUNGSI BARU: Mengintai pergerakan scroll untuk memicu animasi foto berulang-ulang
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".story-foto");
+function muatUcapan() {
+  if (!SCRIPT_URL || SCRIPT_URL === "https://script.google.com/macros/s/AKfycbyltoHDVJhQPoM6L3jBkkpl4giIh3Ny7nLB2bYGxahcf365Czn5ufrSM1Q3QtmpoRXSbQ/exec") return;
 
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
+  fetch(SCRIPT_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      if (listPesan) listPesan.innerHTML = "";
+      if (totalPesan) totalPesan.innerText = data.length;
 
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".image-text");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".image-text1");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".image-text2");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".text-kisah");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".text-kisah1");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".text-kisah2");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".mempelai-img");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fotoStory = document.querySelector(".mempelai1-img");
-
-  if (fotoStory) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // Ketika foto masuk ke area pandang -> Munculkan dari kiri!
-            fotoStory.classList.add("muncul");
-          } else {
-            // Ketika foto keluar dari area pandang (di-scroll menjauh) -> Sembunyikan lagi!
-            fotoStory.classList.remove("muncul");
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Foto akan terpicu jika minimal 15% badannya sudah mengintip di layar
-      },
-    );
-
-    observer.observe(fotoStory);
-  }
-});
-
-// 🛠️ FUNGSI BARU: Animasi meluncur berantai untuk kotak input RSVP
-document.addEventListener("DOMContentLoaded", function () {
-  const rsvpBox = document.querySelector(".rsvp-bg-box");
-
-  // 🛠️ PERBAIKAN: JavaScript dipaksa mencari seluruh input-group dan tombol kirim di dalam kotak pink
-  const elemenAnimasi = document.querySelectorAll(
-    ".rsvp-bg-box .input-group, .rsvp-bg-box .btn-send-wish",
-  );
-
-  if (rsvpBox && elemenAnimasi.length > 0) {
-    const rsvpObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // ✨ SETIAP DIARAHKAN/DILIHAT: Berikan efek meluncur naik berurutan
-            elemenAnimasi.forEach(function (element, indeks) {
-              setTimeout(function () {
-                element.classList.add("muncul-input");
-              }, indeks * 180); // ⏱️ Jeda waktu 180 milidetik agar meluncur bergelombang dari atas ke bawah
-            });
-          } else {
-            // 🔒 SETIAP DITINGGALKAN: Sembunyikan kembali ke bawah layar
-            elemenAnimasi.forEach(function (element) {
-              element.classList.remove("muncul-input");
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Animasi aktif saat 15% area kotak buku tamu mulai terlihat
-      },
-    );
-
-    rsvpObserver.observe(rsvpBox);
-  }
-});
-
-function geserFoto(arah) {
-  // 1. Ambil semua elemen foto yang terdaftar di dalam slider
-  const daftarFoto = document.querySelectorAll(".slide-item");
-  const totalFoto = daftarFoto.length;
-
-  if (totalFoto === 0) return; // Jaga-jaga jika foto belum diisi
-
-  // 2. Hilangkan class 'active' pada foto lama agar memudar hilang
-  daftarFoto[indexFotoSekarang].classList.remove("active");
-
-  // 3. Rumus matematika menghitung indeks tujuan berikutnya
-  indexFotoSekarang = indexFotoSekarang + arah;
-
-  // Jika menekan Next di foto terakhir -> Lompat kembali ke foto pertama (indeks 0)
-  if (indexFotoSekarang >= totalFoto) {
-    indexFotoSekarang = 0;
-  }
-  // Jika menekan Back di foto pertama -> Lompat langsung ke foto paling terakhir
-  else if (indexFotoSekarang < 0) {
-    indexFotoSekarang = totalFoto - 1;
-  }
-
-  // 4. Tambahkan kembali class 'active' pada foto baru agar memudar muncul ke panggung
-  daftarFoto[indexFotoSekarang].classList.add("active");
-}
-
-function openInvitation() {
-  const loadingPhoto = document.getElementById("loading-photo");
-  const penutup = document.getElementById("tutup-page");
-  const giftpage = document.getElementById("gift");
-  const weddings = document.getElementById("program");
-  const mainPage = document.getElementById("main-page");
-  const FotoDecor = document.getElementById("decoration");
-  const story = document.getElementById("story1");
-  const moment = document.getElementById("our-moment");
-  const ucapandoa = document.getElementById(".rsvp");
-  const transitionImg = document.querySelector(".mempelai-transition-img");
-  const btnOpen = document.querySelector(".btn-open");
-  // ... (Seluruh kode pembuka halaman/animasi cover lama Anda tetap dibiarkan utuh) ...
-  const backgroundMusic = document.getElementById("background-music");
-  const musicBtn = document.getElementById("music-control"); // Jika kamu pakai tombol melayang
-
-  if (backgroundMusic) {
-    backgroundMusic
-      .play()
-      .then(() => {
-        console.log("Musik berhasil diputar");
-        // Ubah ikon tombol musik jika ada
-        if (musicBtn) musicBtn.innerHTML = "⏸";
-      })
-      .catch((error) => {
-        console.log("Gagal memutar musik:", error);
+      // Tampilkan data dari Google Sheets
+      data.reverse().forEach((item) => {
+        tambahElemenPesan(item.nama, item.status, item.pesan);
       });
-  }
-
-  // 1. Tombol "Open Invitation" langsung hilang seketika saat diklik
-  if (btnOpen) {
-    btnOpen.style.display = "none";
-  }
-
-  // 2. Langsung buka kunci halaman utama agar aktif di browser
-  if (FotoDecor) {
-    FotoDecor.classList.add("show-page");
-    FotoDecor.scrollIntoView({ behavior: "smooth" });
-  }
-
-  if (mainPage) {
-    mainPage.classList.add("show-page");
-  }
-
-  if (weddings) {
-    weddings.classList.add("show-page");
-  }
-
-  if (story) {
-    story.classList.add("show-page");
-  }
-
-  if (moment) {
-    moment.classList.add("show-page");
-  }
-
-  if (rsvp) {
-    rsvp.classList.add("show-page");
-  }
-
-  if (giftpage) {
-    giftpage.classList.add("show-page");
-  }
-
-  if (penutup) {
-    penutup.classList.add("show-page");
-  }
-
-  // 3. Bersamaan dengan itu, munculkan foto transisi melayang di atasnya
-  if (loadingPhoto) {
-    loadingPhoto.classList.add("show-flex");
-    setTimeout(function () {
-      loadingPhoto.style.opacity = "1";
-    }, 10);
-  }
-
-  // 4. ⏱️ JEDA FOTO TAMPIL SELAMA 3 DETIK (3000 milidetik)
-  setTimeout(function () {
-    // PROSES PUDAR: Foto dan latar belakang melarut hilang perlahan selama 1 detik
-    if (loadingPhoto) {
-      loadingPhoto.style.transition = "opacity 1s ease-in-out";
-      loadingPhoto.style.opacity = "0";
-    }
-
-    if (transitionImg) {
-      transitionImg.style.transition =
-        "opacity 1s ease-in-out, transform 1s ease-in-out";
-      transitionImg.style.opacity = "0";
-      transitionImg.style.transform = "scale(0.95)";
-    }
-
-    // Tunggu hingga pudar selesai total (1 detik / 1000 milidetik)
-    setTimeout(function () {
-      if (loadingPhoto) {
-        loadingPhoto.classList.remove("show-flex");
-        loadingPhoto.style.display = "none";
-      }
-
-      // 5. Munculkan Floating-navbar setelah foto hilang
-      const mainNavbar = document.getElementById("main-navbar");
-      if (mainNavbar) {
-        mainNavbar.classList.add("show-navbar");
-      }
-
-      // 🛠️ 6. UTAMA: JALANKAN FITUR AUTO SCROLL PERLAHAN DI SINI
-      startAutoScroll();
-    }, 1000);
-  }, 1000);
-  jalankanGaleriOtomatis();
-}
-
-function kirimUcapan(event) {
-  event.preventDefault();
-
-  const namaTamu = document.getElementById("guest-name-input").value;
-  const pesanTamu = document.getElementById("guest-message-input").value;
-
-  // 🛠️ AMBIL DATA BARU: Mengambil status kehadiran dari input select
-  const statusTamu = document.getElementById("guest-status-input").value;
-
-  const wadahList = document.getElementById("wishes-display-container");
-
-  if (!namaTamu || !pesanTamu || !statusTamu) return;
-
-  const inisialHuruf = namaTamu.charAt(0).toUpperCase();
-
-  // 🛠️ BERIKAN WARNA KELAS BERBEDA: Untuk membedakan gaya teks label hadir/tidak hadir
-  const classBadge = statusTamu === "Hadir" ? "badge-hadir" : "badge-absen";
-
-  const kartuUcapanBaru = document.createElement("div");
-  kartuUcapanBaru.classList.add("wish-card");
-
-  kartuUcapanBaru.innerHTML = `
-        <div class="wish-profile-avatar">
-            <span>${inisialHuruf}</span>
-        </div>
-        <div class="wish-text-content">
-            <div class="wish-header-meta">
-                <h4 class="wish-sender-name">${namaTamu}</h4>
-                <!-- 🛠️ TAMPILKAN DI SINI: Teks kecil label kehadiran di samping/bawah nama -->
-                <span class="status-badge ${classBadge}">${statusTamu}</span>
-            </div>
-            <p class="wish-sender-message">${pesanTamu}</p>
-        </div>
-    `;
-
-  if (wadahList.firstChild) {
-    wadahList.insertBefore(kartuUcapanBaru, wadahList.firstChild);
-  } else {
-    wadahList.appendChild(kartuUcapanBaru);
-  }
-
-  // Bersihkan form kembali ke awal
-  document.getElementById("guest-name-input").value = "";
-  document.getElementById("guest-message-input").value = "";
-  document.getElementById("guest-status-input").value = ""; // Reset pilihan select
-}
-
-// 🛠️ FUNGSI 1: Fitur otomatis salin nomor rekening atau alamat ke memori HP/Laptop
-function salinNomor(idElemen, tombol) {
-  const teksTujuan = document.getElementById(idElemen).innerText;
-
-  navigator.clipboard
-    .writeText(teksTujuan)
-    .then(function () {
-      // Simpan teks asli tombol sebelum diubah
-      const teksAsli = tombol.innerHTML;
-
-      // Ubah tampilan tombol sesaat sebagai tanda sukses disalin
-      tombol.innerHTML = "✅ Berhasil Disalin!";
-      tombol.style.backgroundColor = "#000000";
-
-      // Kembalikan tombol ke wujud semula setelah 2 detik
-      setTimeout(function () {
-        tombol.innerHTML = teksAsli;
-        tombol.style.backgroundColor = "#f704e2";
-      }, 2000);
     })
-    .catch(function () {
-      alert("Gagal menyalin otomatis, silakan salin manual ya!");
-    });
+    .catch((err) => console.error("Gagal memuat data ucapan:", err));
 }
 
-// 🛠️ FUNGSI 2: Sensor Scroll Aktif Bolak-Balik Khusus untuk Kartu Amplop Hadiah
-document.addEventListener("DOMContentLoaded", function () {
-  const wadahGift = document.querySelector(".gift-container");
-  const semuaKartuGift = document.querySelectorAll(".gift-address-card");
+if (formRSVP) {
+  formRSVP.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  if (wadahGift && semuaKartuGift.length > 0) {
-    const giftObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // ✨ SETIAP DILIHAT: Meluncur naik bergantian berurutan
-            semuaKartuGift.forEach(function (kartu, indeks) {
-              setTimeout(function () {
-                kartu.classList.add("muncul-gift");
-              }, indeks * 200); // Jeda 200ms agar kartu ke-2 menyusul setelah kartu ke-1
-            });
-          } else {
-            // 🔒 SETIAP DITINGGALKAN: Sembunyikan kembali ke bawah layar kaca
-            semuaKartuGift.forEach(function (kartu) {
-              kartu.classList.remove("muncul-gift");
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-      },
-    );
+    const btnSubmit = formRSVP.querySelector("button[type='submit']");
+    const teksAsli = btnSubmit.innerText;
 
-    giftObserver.observe(wadahGift);
-  }
-});
+    // Ubah teks tombol saat proses mengirim
+    btnSubmit.innerText = "Mengirim...";
+    btnSubmit.disabled = true;
 
-// 🛠️ FUNGSI BARU: Animasi meluncur dari kanan secara berantai untuk komponen Hadiah/Gift
-document.addEventListener("DOMContentLoaded", function () {
-  // JavaScript mengumpulkan semua baris rekening dan kotak alamat di bawahnya
-  const elemenHadiah = document.querySelectorAll(
-    ".gift-row-item, .gift-address-card",
-  );
+    const nama = document.getElementById("nama-tamu").value;
+    const status = document.getElementById("status-kehadiran").value;
+    const pesan = document.getElementById("pesan-ucapan").value;
 
-  if (elemenHadiah.length > 0) {
-    const giftObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // ✨ SETIAP DIARAHKAN/DILIHAT: Berikan efek meluncur dari kanan berurutan (staggered)
-            elemenHadiah.forEach(function (element, indeks) {
-              setTimeout(function () {
-                element.classList.add("muncul-right");
-              }, indeks * 150); // ⏱️ Jeda waktu 150ms antar baris agar meluncur bergantian rapi
-            });
-          } else {
-            // 🔒 SETIAP DITINGGALKAN/DI-SCROLL JAUH: Sembunyikan kembali ke kanan luar layar
-            elemenHadiah.forEach(function (element) {
-              element.classList.remove("muncul-right");
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Animasi aktif saat 15% area bab hadiah mulai mengintip di layar kaca HP
-      },
-    );
+    const payload = { nama, status, pesan };
 
-    // Daftarkan sensor induk ke wadah utama gift
-    const giftContainer =
-      document.querySelector(".gift-single-box") || elemenHadiah[0];
-    if (giftContainer) {
-      giftObserver.observe(giftContainer);
-    }
-  }
-});
-
-// 🛠️ FUNGSI BARU: Menyalin Nomor HP Pembuat secara instan saat tombol ikon diklik
-function salinNomorHp(nomorHp, tombol) {
-  navigator.clipboard
-    .writeText(nomorHp)
-    .then(function () {
-      // Tampilkan teks notifikasi melayang kecil di layar
-      alert("Nomor HP Pembuat (" + nomorHp + ") berhasil disalin ke memori!");
-
-      // Efek animasi bergetar sedikit pada tombol sebagai penanda sukses
-      tombol.style.transform = "scale(0.85)";
-      setTimeout(function () {
-        tombol.style.transform = "none";
-      }, 150);
+    // Kirim data ke Google Sheets
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(payload),
     })
-    .catch(function () {
-      alert("Gagal menyalin otomatis, silakan catat nomor ini: " + nomorHp);
-    });
+      .then((res) => res.json())
+      .then((response) => {
+        // Tampilkan pesan baru di bagian paling atas
+        tambahElemenPesan(nama, status, pesan);
+
+        // Update jumlah counter ucapan
+        if (totalPesan) {
+          totalPesan.innerText = parseInt(totalPesan.innerText || 0) + 1;
+        }
+
+        formRSVP.reset();
+      })
+      .catch((err) => {
+        alert("Gagal mengirim ucapan, silakan coba lagi!");
+        console.error("Error:", err);
+      })
+      .finally(() => {
+        btnSubmit.innerText = teksAsli;
+        btnSubmit.disabled = false;
+      });
+  });
+}
+
+function tambahElemenPesan(nama, status, pesan) {
+  let statusClass = "status-hadir";
+  if (status === "Tidak Hadir") statusClass = "status-tidak-hadir";
+  else if (status === "Ragu-ragu") statusClass = "status-ragu";
+
+  const itemBaru = document.createElement("div");
+  itemBaru.className = "item-pesan";
+  itemBaru.innerHTML = `
+    <div class="header-pesan">
+      <span class="nama-pengirim">${nama}</span>
+      <span class="badge-status ${statusClass}">${status}</span>
+    </div>
+    <p class="isi-pesan">${pesan}</p>
+  `;
+
+  if (listPesan) {
+    listPesan.insertBefore(itemBaru, listPesan.firstChild);
+  }
+}
+
+function salinRekening(elementId, btnElement) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    const teksAsli = btnElement.innerText;
+    btnElement.innerText = "Tersalin!";
+    btnElement.classList.add("berhasil");
+
+    setTimeout(() => {
+      btnElement.innerText = teksAsli;
+      btnElement.classList.remove("berhasil");
+    }, 2000);
+  });
 }
